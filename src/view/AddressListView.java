@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
+import control.listeners.AddButtonActionListener;
+import control.listeners.SaveButtonActionListener;
+
 import model.Address;
 import model.AddressList;
 
@@ -59,18 +62,8 @@ public class AddressListView extends JFrame {
 		// creating a addButton and registering a new listener
 		JButton addButton = new JButton("Add address");
 		final AddressListView alv = this;
-		addButton.addActionListener(new ActionListener() {
-			/**
-			 * W�hlen Sie f�r diese anonyme Klasse AddButtonActionListener als
-			 * Klassenamen.
-			 */
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				Address address = new Address();
-				new AddressView(address, alv);
-			}
-		});
-
+		addButton.addActionListener(new AddButtonActionListener(alv));
+			
 		// changing the constraints to fit to the button
 		// adding the button to the JFrame
 		constraints.weighty = 0.1;
@@ -80,26 +73,8 @@ public class AddressListView extends JFrame {
 
 		// creating a saveButton abd registering a new listener
 		JButton saveButton = new JButton("Save all");
-		saveButton.addActionListener(new ActionListener() {
-			/**
-			 * W�hlen Sie f�r diese anonyme Klasse SaveButtonActionListener als
-			 * Klassenamen.
-			 */
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				FileOutputStream fos = null;
-				ObjectOutputStream out = null;
-				try {
-					fos = new FileOutputStream((new Date().getTime() + ".ser"));
-					out = new ObjectOutputStream(fos);
-					out.writeObject(addressList);
-					out.close();
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
-			}
-		});
-		
+		saveButton.addActionListener(new SaveButtonActionListener(addressList));
+					
 		// changing the constraints to fit to the button
 		// adding the button to the JFrame
 		constraints.gridx = 1;

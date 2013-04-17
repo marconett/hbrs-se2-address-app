@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import control.listeners.SpeicherButtonActionListener;
+
 import model.Address;
 
 @SuppressWarnings("serial")
@@ -69,26 +71,9 @@ public class AddressView extends JFrame {
 		
 		// creating the SpeicherButton and register an new Listener
 		JButton speicherButton = new JButton("Hinterlegen");
-
-		speicherButton.addActionListener(new ActionListener() {
-			/**
-			 * W�hlen Sie f�r diese anonyme Klasse SpeichernButtonActionListener
-			 * als Klassenamen.
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				retrieveFields();
-
-				addressListView.addAddress(address);
-
-				Container container = (Container) e.getSource();
-				while (!(container instanceof JFrame)) {
-					container = container.getParent();
-				}
-				((JFrame) container).setVisible(false);
-				((JFrame) container).dispose();
-			}
-		});
+		speicherButton.addActionListener(new SpeicherButtonActionListener(addressListView, this, address));
+			
+		
 		
 		// adding it to the JFrame
 		this.add(speicherButton, BorderLayout.SOUTH);
@@ -104,7 +89,7 @@ public class AddressView extends JFrame {
 	}
 	
 	// setting the fields to the values of the textfields if manipulated
-	private void retrieveFields() {
+	public void retrieveFields() {
 		address.setName(nameTextField.getText());
 		address.setEmailaddress(emailaddressTextField.getText());
 	}
