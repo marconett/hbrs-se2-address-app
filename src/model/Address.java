@@ -5,14 +5,16 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 6780532528672421304L;
-
+	
+	// member fields for the address
 	private String name;
 	private String emailaddress;
 
 	public Address() {
 		init();
 	}
-
+	
+	// initializing the values
 	private void init() {
 		this.name = "";
 		this.emailaddress = "";
@@ -33,7 +35,8 @@ public class Address implements Serializable {
 	public String getEmailaddress() {
 		return emailaddress;
 	}
-
+	
+	// overriding the toString()-method
 	public String toString() {
 		return name + " " + emailaddress;
 	}
