@@ -32,13 +32,12 @@ public class AddressListView extends JFrame implements Observer {
 	
 	
 	// member fields, the AddressList to display and a ListModel
-	private AddressList addressList;
+	private AddressList addressList = AddressList.getInstance();
 	private DefaultListModel listModel;
 
 	// create a AddressListView
-	public AddressListView(AddressList addressList) {
+	public AddressListView() {
 		System.out.println("constructing AddressListView");
-		this.addressList = addressList;
 		addressList.addObserver(this);
 		
 		init();
@@ -115,7 +114,7 @@ public class AddressListView extends JFrame implements Observer {
 		JButton saveButton = new JButton("Save all");
 		saveButton.setAlignmentX(CENTER_ALIGNMENT);
 		saveButton.setMaximumSize(getPreferredSize());
-		saveButton.addActionListener(new SaveButtonActionListener(addressList));
+		saveButton.addActionListener(new SaveButtonActionListener());
 		
 		JButton readButton = new JButton("Read all");
 		readButton.setAlignmentX(CENTER_ALIGNMENT);

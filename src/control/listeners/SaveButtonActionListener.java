@@ -12,10 +12,10 @@ import model.AddressList;
 public class SaveButtonActionListener implements ActionListener {
 
 	
-	private AddressList al;
+	private AddressList al = AddressList.getInstance();
 	
-	public SaveButtonActionListener(AddressList al){
-		this.al = al;
+	public SaveButtonActionListener(){
+		super();
 	}
 	
 	// Save the addressList-model through

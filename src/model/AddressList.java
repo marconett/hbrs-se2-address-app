@@ -11,9 +11,21 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	private static final long serialVersionUID = -8436170099085318899L;
 	
 	private LinkedList<AbstractAddress> addressList = new LinkedList<AbstractAddress>();
+	private static AddressList singelton;
 	
-	public AddressList(){
+	
+	
+	private AddressList(){
 		System.out.println("constructing AddressList");
+	}
+	
+	public static AddressList getInstance(){
+		if ( singelton == null){
+			singelton = new AddressList();
+			return singelton;
+			}	
+		else
+			return singelton;
 	}
 
 	@Override
