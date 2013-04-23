@@ -30,7 +30,7 @@ public class SpeicherButtonActionListener implements ActionListener {
 		// add the Address to the AddressList
 		av.retrieveFields();
 		
-		/*
+		/* Debug
 		if(address == null)
 			System.out.println("a ist null");
 		*/

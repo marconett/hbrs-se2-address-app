@@ -49,10 +49,17 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 	
 	public boolean add(AbstractAddress e){
-		System.out.println("AL: adding address " + e.toString());
+		System.out.println("AL: adding address " + e);
 		boolean result = addressList.add(e);
 		notifyObservers();
 		return result;		
+	}
+	
+	public boolean remove(AbstractAddress e){
+		System.out.println("AL: removing address " + e);
+		boolean result = addressList.remove(e);
+		notifyObservers();
+		return result;
 	}
 
 	public LinkedList<AbstractAddress> getAddressList() {

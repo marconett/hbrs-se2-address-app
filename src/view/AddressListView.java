@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 
 import control.listeners.AddEmailButtonActionListener;
 import control.listeners.AddPostalActionListener;
+import control.listeners.DeleteButtonActionListener;
 import control.listeners.ReadButtonActionListener;
 import control.listeners.SaveButtonActionListener;
 import control.listeners.SendButtonActionListener;
@@ -188,6 +189,28 @@ public class AddressListView extends JFrame implements Observer {
 		constraints.gridy = 2;
 		
 		add(strategyPanel, constraints);
+		
+		// Creating the Command Panel
+		
+		JPanel commandPanel = new JPanel();
+		commandPanel.setBorder(BorderFactory.createTitledBorder("Commands"));
+		commandPanel.setLayout(new BoxLayout(commandPanel, BoxLayout.PAGE_AXIS));
+		
+		
+		JButton deleteButton = new JButton("Delete");
+		deleteButton.setAlignmentX(CENTER_ALIGNMENT);
+		deleteButton.setMaximumSize(getPreferredSize());
+		deleteButton.addActionListener( new DeleteButtonActionListener(list)); 
+		
+		commandPanel.add(deleteButton);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 0;
+		constraints.gridheight = 1;
+		
+		
+		add(commandPanel, constraints);
+		
 				
 		// packing the whole window together		
 		
@@ -206,17 +229,15 @@ public class AddressListView extends JFrame implements Observer {
 		System.out.println("ALV: refreshing AddressListView");
 		listModel.removeAllElements();
 		for (AbstractAddress address : addressList.getAddressList()) {
-			listModel.addElement(address.toString());
+			listModel.addElement(address);
 		}
 	}
-
 	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		System.out.println("ALV: updating...");
 		populateFields();
-	}
-	
+	}	
 	
 }
