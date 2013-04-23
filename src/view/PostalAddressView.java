@@ -92,7 +92,6 @@ public class PostalAddressView extends AbstractAddressView {
 		hausnummerTextfield.setText(address.getHausnummer());
 		plzTextField.setText(address.getPlz());
 		ortTextField.setText(address.getOrt());
-
 	}
 
 	@Override
@@ -103,7 +102,6 @@ public class PostalAddressView extends AbstractAddressView {
 		address.setHausnummer(hausnummerTextfield.getText());
 		address.setPlz(plzTextField.getText());
 		address.setOrt(ortTextField.getText());
-
 	}
 
 }

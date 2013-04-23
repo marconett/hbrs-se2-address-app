@@ -1,24 +1,35 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 import control.listeners.AddEmailButtonActionListener;
 import control.listeners.AddPostalActionListener;
+import control.listeners.ReadButtonActionListener;
 import control.listeners.SaveButtonActionListener;
+import control.listeners.SendButtonActionListener;
 
 import model.AbstractAddress;
 import model.AddressList;
 
 @SuppressWarnings("serial")
 public class AddressListView extends JFrame implements Observer {
+	
 	
 	// member fields, the AddressList to display and a ListModel
 	private AddressList addressList;
@@ -47,9 +58,10 @@ public class AddressListView extends JFrame implements Observer {
 		// creating the constraints for the JScrollPane
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
-		constraints.gridx = 0;
+		constraints.gridx = 1;
 		constraints.gridy = 0;
-		constraints.gridwidth = 4;
+		constraints.gridheight = 3;
+		constraints.gridwidth = 1;
 		constraints.weighty = 0.9;
 		constraints.weightx = 0.9;
 
@@ -61,43 +73,94 @@ public class AddressListView extends JFrame implements Observer {
 		// adding the JScrollPane to the JFrame with its specific constraints
 		this.add(scrollpane, constraints);
 		
-		// creating a addButton and registering a new listener
-		JButton addEmailButton = new JButton("Add Email");
+		
+		//// Creating and Adding the Email Panel
+		
+		JPanel emailPanel = new JPanel();
+		emailPanel.setBorder(BorderFactory.createTitledBorder("Emails"));
+		emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.PAGE_AXIS));
+				
 		final AddressListView alv = this;
+		
+		// creating a addButton and registering a new listener
+		JButton addEmailButton = new JButton("Add Email ");
+		addEmailButton.setMaximumSize(getPreferredSize());
 		addEmailButton.addActionListener(new AddEmailButtonActionListener(alv));
 			
 		// changing the constraints to go with the buttons
-		// adding the button to the JFrame
-		constraints.fill = GridBagConstraints.NONE;
-		constraints.weighty = 0;
-		constraints.weightx = 0;
-		constraints.gridwidth = 1;
-		
-		
-		constraints.gridx = 0;
-		constraints.gridy = 1;
-		
-		this.add(addEmailButton, constraints);
-		
+		// adding the button to the JFrame		
 		JButton addPostalButton = new JButton("Add Postal");
+		addPostalButton.setMaximumSize(getPreferredSize());
 		addPostalButton.addActionListener(new AddPostalActionListener(alv));		
 				
-		constraints.gridx = 1;
-		constraints.gridy = 1;
-		this.add(addPostalButton, constraints);
+		emailPanel.add(addEmailButton, constraints);
+		emailPanel.add(addPostalButton, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		constraints.gridheight = 1;
+		constraints.weightx = 0;
+		constraints.weighty = 0;
+		
+		add(emailPanel, constraints);
+		
+		
+		// Creating and Adding the IO-Panel
+		
+		JPanel ioPanel = new JPanel();
+		ioPanel.setBorder(BorderFactory.createTitledBorder("Save & Load"));
+		ioPanel.setLayout(new BoxLayout(ioPanel, BoxLayout.PAGE_AXIS));
 
 		// creating a saveButton abd registering a new listener
 		JButton saveButton = new JButton("Save all");
+		saveButton.setAlignmentX(CENTER_ALIGNMENT);
+		saveButton.setMaximumSize(getPreferredSize());
 		saveButton.addActionListener(new SaveButtonActionListener(addressList));
-					
-		// changing the constraints to fit to the button
-		// adding the button to the JFrame
-		constraints.gridx = 2;
+		
+		JButton readButton = new JButton("Read all");
+		readButton.setAlignmentX(CENTER_ALIGNMENT);
+		readButton.setMaximumSize(getPreferredSize());
+		readButton.addActionListener(new ReadButtonActionListener());
+		
+		ioPanel.add(saveButton);
+		ioPanel.add(readButton);
+		
+		constraints.gridx = 0;
 		constraints.gridy = 1;
-			
-		this.add(saveButton, constraints);
+							
+		add(ioPanel, constraints);
+		
+		/// Creating and Adding the Strategy-Panel
+		
+		JPanel strategyPanel = new JPanel();
+		strategyPanel.setBorder(BorderFactory.createTitledBorder("Strategy"));
+		strategyPanel.setLayout(new BoxLayout(strategyPanel, BoxLayout.PAGE_AXIS));
+		
+		JRadioButton lowBudgetButton = new JRadioButton("low Budget");
+		JRadioButton highBudgetButton = new JRadioButton("high Budget");
+		
+		strategyPanel.add(lowBudgetButton);
+		strategyPanel.add(highBudgetButton);
+		
+		JButton sendButton = new JButton("Send Mails");
+		sendButton.addActionListener(new SendButtonActionListener());
+		
+		strategyPanel.add(sendButton);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(lowBudgetButton);
+		group.add(highBudgetButton);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		
+		add(strategyPanel, constraints);
+		
+		
 		
 		// packing the whole window together
+		
+		
 		this.pack();
 	}
 	
