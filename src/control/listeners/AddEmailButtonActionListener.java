@@ -23,7 +23,7 @@ public class AddEmailButtonActionListener implements ActionListener {
 	// create a new empty address and an addressView
 	// link the addressView to the addressListView
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("ACTION: add new EmailOnlyAddress...");
+		System.out.println("ACTION: clicked to add new EmailOnlyAddress...");
 		EmailOnlyAddress address = new EmailOnlyAddress();
 		new EmailOnlyAddressView(alv, address);
 	}

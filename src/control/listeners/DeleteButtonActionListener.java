@@ -21,7 +21,7 @@ public class DeleteButtonActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 		Object selectedAddress = adr_list.getSelectedValue();
 		
-		System.out.println("ACTION: removing address: " + (AbstractAddress)selectedAddress);
+		System.out.println("ACTION: clicked to remove address: " + (AbstractAddress)selectedAddress);
 		
 		AddressList al = AddressList.getInstance();
 		al.remove( (AbstractAddress)selectedAddress);		

@@ -25,7 +25,7 @@ public class SpeicherButtonActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("ACTION: saving or editing Address...");
+		System.out.println("ACTION: clicked to save or edit Address...");
 		
 		
 		/* Debug

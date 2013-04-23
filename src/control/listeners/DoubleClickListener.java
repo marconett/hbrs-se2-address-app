@@ -28,7 +28,7 @@ public class DoubleClickListener extends MouseAdapter {
 	        if (index == -1)
 	             System.out.println("Sie haben nichts ausgewählt.");
 	        else {
-	        	 System.out.println("ACTION: address selected via mouse");
+	        	 System.out.println("ACTION: selected address via mouse...");
 	             AbstractAddress address = (AbstractAddress) ((JList) e.getSource()).getSelectedValue();
 	             // Ihr Code
 	             if ( address instanceof EmailOnlyAddress)

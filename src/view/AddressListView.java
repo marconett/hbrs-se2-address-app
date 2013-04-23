@@ -163,7 +163,7 @@ public class AddressListView extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				MessageSender.setMessageSenderStrategy( new LowBudgetStrategy());
-				System.out.println("ACTION: strategy changed to low budget");
+				System.out.println("ACTION: clicked to change strategy to low budget");
 			}
 		});
 		
@@ -173,7 +173,7 @@ public class AddressListView extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				MessageSender.setMessageSenderStrategy( new HighBudgetStrategy());
-				System.out.println("ACTION: strategy changed to high budget");
+				System.out.println("ACTION: clicked to change strategy to high budget");
 			}
 		});
 		

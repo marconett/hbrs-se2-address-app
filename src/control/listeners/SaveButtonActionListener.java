@@ -22,7 +22,7 @@ public class SaveButtonActionListener implements ActionListener {
 	// writing it out into a file
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("ACTION: serializing data, saving to disk");
+		System.out.println("ACTION: clicked to save to disk, serializing data...");
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try {
