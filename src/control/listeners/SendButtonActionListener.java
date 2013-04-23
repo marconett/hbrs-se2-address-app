@@ -16,7 +16,7 @@ public class SendButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("ACTION: sending message to all...");
+		System.out.println("ACTION: clicked to send message to all...");
 		MessageSender.sendMessageToAll("This is a Test");
 	}
 
