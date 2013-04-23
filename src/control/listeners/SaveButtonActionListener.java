@@ -22,7 +22,6 @@ public class SaveButtonActionListener implements ActionListener {
 	// writing it out into a file
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("SaveButtonListener: saving AddressList, serializing data");
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
 		try {

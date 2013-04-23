@@ -27,7 +27,6 @@ public class SpeicherButtonActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("SpeicherButtonListener: saving Address to AddressList");
 		// get the input from the AddressView and
 		// add the Address to the AddressList
 		av.retrieveFields();

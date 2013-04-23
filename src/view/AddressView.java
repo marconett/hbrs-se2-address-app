@@ -31,7 +31,6 @@ public class AddressView extends JFrame {
 	//creating an AddressView, filling its fields and setting its visibility and close 
 	// operation
 	public AddressView(Address address, AddressListView addressListView) {
-		System.out.println("constructing AddressView..");
 		this.address = address;
 		this.addressListView = addressListView;
 		init();
@@ -43,7 +42,6 @@ public class AddressView extends JFrame {
 	
 	private void init() {
 		
-		System.out.println("initializing AddressView");
 		// Setting Jframe-title and layout (The Window)
 		this.setTitle("Address");
 		this.setLayout(new BorderLayout());
@@ -86,14 +84,12 @@ public class AddressView extends JFrame {
 	
 	// getting the fields of address which ought to be displayed
 	private void populateFields() {
-		System.out.println("AV: populating fields");
 		nameTextField.setText(address.getName());
 		emailaddressTextField.setText(address.getEmailaddress());
 	}
 	
 	// setting the fields to the values of the textfields if manipulated
 	public void retrieveFields() {
-		System.out.println("AV: retrieving fields");
 		address.setName(nameTextField.getText());
 		address.setEmailaddress(emailaddressTextField.getText());
 	}

@@ -22,7 +22,6 @@ public class AddButtonActionListener implements ActionListener {
 	// create a new empty address and an addressView
 	// link the addressView to the addressListView
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Add new address...");
 		Address address = new Address();
 		new AddressView(address, alv);
 	}
