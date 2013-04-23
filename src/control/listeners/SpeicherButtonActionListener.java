@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import model.AbstractAddress;
+import model.AddressList;
 import view.AbstractAddressView;
 import view.AddressListView;
 
@@ -28,10 +29,14 @@ public class SpeicherButtonActionListener implements ActionListener {
 		// get the input from the AddressView and
 		// add the Address to the AddressList
 		av.retrieveFields();
+		
+		/*
 		if(address == null)
 			System.out.println("a ist null");
+		*/
 		System.out.println(address.toString());
-		alv.addAddress(address);
+		AddressList al = AddressList.getInstance();
+		al.add(address);
 
 		// close the Window
 		Container container = (Container) e.getSource();

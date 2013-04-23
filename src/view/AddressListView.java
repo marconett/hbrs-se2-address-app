@@ -42,7 +42,7 @@ public class AddressListView extends JFrame implements Observer {
 	// create a AddressListView
 	public AddressListView() {
 		System.out.println("constructing AddressListView");
-		addressList.addObserver(this);
+		AddressList.getInstance().addObserver(this);
 		
 		init();
 		populateFields();
@@ -192,12 +192,6 @@ public class AddressListView extends JFrame implements Observer {
 		// packing the whole window together		
 		
 		this.pack();
-	}
-	
-	// adding an address to the addressList-model
-	public void addAddress(AbstractAddress address) {
-		System.out.println("ALV: adding address");
-		addressList.add(address);
 	}
 
 	// filling the ListModel with addresses

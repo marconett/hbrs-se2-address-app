@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
-// AddressList is just an subclass of an LinkedList<Address>
+// AddressList extends Observable, has a list of addresses
 public class AddressList extends Observable implements Serializable, Iterable<AbstractAddress> {
 	private static final long serialVersionUID = -8436170099085318899L;
 	
-	private LinkedList<AbstractAddress> addressList = new LinkedList<AbstractAddress>();
+	private static LinkedList<AbstractAddress> addressList = new LinkedList<AbstractAddress>();
 	private static AddressList singelton;
 	
 	
