@@ -11,11 +11,13 @@ public class Address implements Serializable {
 	private String emailaddress;
 
 	public Address() {
+		System.out.println("constructing Address");
 		init();
 	}
 	
 	// initializing the values
 	private void init() {
+		System.out.println("initializing Address");
 		this.name = "";
 		this.emailaddress = "";
 	}
