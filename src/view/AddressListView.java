@@ -18,7 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
-import control.listeners.AddButtonActionListener;
+import control.listeners.AddEmailButtonActionListener;
+import control.listeners.AddPostalActionListener;
 import control.listeners.SaveButtonActionListener;
 
 import model.Address;
@@ -68,16 +69,25 @@ public class AddressListView extends JFrame implements Observer {
 		this.add(scrollpane, constraints);
 		
 		// creating a addButton and registering a new listener
-		JButton addButton = new JButton("Add address");
+		JButton addEmailButton = new JButton("Add Email");
 		final AddressListView alv = this;
-		addButton.addActionListener(new AddButtonActionListener(alv));
+		addEmailButton.addActionListener(new AddEmailButtonActionListener(alv));
 			
 		// changing the constraints to fit to the button
 		// adding the button to the JFrame
 		constraints.weighty = 0.1;
 		constraints.gridy = 1;
 		constraints.gridwidth = 1;
-		this.add(addButton, constraints);
+		this.add(addEmailButton, constraints);
+		
+		JButton addPostalButton = new JButton("Add Postal");
+		addPostalButton.addActionListener(new AddPostalActionListener(alv));
+		
+		
+		constraints.weighty = 0.1;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		this.add(addPostalButton, constraints);
 
 		// creating a saveButton abd registering a new listener
 		JButton saveButton = new JButton("Save all");
