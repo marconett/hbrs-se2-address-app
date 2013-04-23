@@ -40,7 +40,7 @@ public class PostalAddressView extends AbstractAddressView {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		System.out.println("initializing EmailOnlyAddressView");
+		System.out.println("initializing PostalAddressView");
 		// Setting Jframe-title and layout (The Window)
 		setTitle("Email Address");
 		upperPanel.setLayout(new GridLayout(6, 2 , 5, 5 ));
