@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.util.logging.Logger;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,6 +31,8 @@ public class AddressListView extends JFrame {
 
 	// create a AddressListView
 	public AddressListView(AddressList addressList) {
+		System.out.println("constructing AddressListView");
+		
 		this.addressList = addressList;
 		init();
 		populateFields();
@@ -38,6 +42,7 @@ public class AddressListView extends JFrame {
 	
 	// Setting up the view
 	private void init() {
+		System.out.println("initilazing AddressListView");
 
 		// setting Jframe (Window) title and layout
 		this.setTitle("Address-List");
@@ -87,17 +92,20 @@ public class AddressListView extends JFrame {
 	
 	// adding an address to the addressList-model
 	public void addAddress(Address address) {
+		System.out.println("ALV: adding address");
 		addressList.add(address);
 		this.refreshAddressList();
 	}
 
 	// filling the ListModel with addresses
 	private void populateFields() {
+		System.out.println("ALV: populating Fields");
 		refreshAddressList();
 	}
 
 	// getting the addresses from the model
 	private void refreshAddressList() {
+		System.out.println("ALV: refreshing AddressListView");
 		listModel.removeAllElements();
 		for (Address address : addressList) {
 			listModel.addElement(address.toString());
