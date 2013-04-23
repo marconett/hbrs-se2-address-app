@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,6 +24,9 @@ import control.listeners.AddPostalActionListener;
 import control.listeners.ReadButtonActionListener;
 import control.listeners.SaveButtonActionListener;
 import control.listeners.SendButtonActionListener;
+import control.strategy.HighBudgetStrategy;
+import control.strategy.LowBudgetStrategy;
+import control.strategy.MessageSender;
 
 import model.AbstractAddress;
 import model.AddressList;
@@ -54,7 +58,7 @@ public class AddressListView extends JFrame implements Observer {
 		this.setTitle("Address-List");
 		this.setLayout(new GridBagLayout());
 		
-		// creating the constraints for the JScrollPane
+		// creating the constraints and setting values for the JScrollPane
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.gridx = 1;
@@ -110,7 +114,7 @@ public class AddressListView extends JFrame implements Observer {
 		ioPanel.setBorder(BorderFactory.createTitledBorder("Save & Load"));
 		ioPanel.setLayout(new BoxLayout(ioPanel, BoxLayout.PAGE_AXIS));
 
-		// creating a saveButton abd registering a new listener
+		// creating a saveButton and readButton registering a new listener
 		JButton saveButton = new JButton("Save all");
 		saveButton.setAlignmentX(CENTER_ALIGNMENT);
 		saveButton.setMaximumSize(getPreferredSize());
@@ -135,17 +139,47 @@ public class AddressListView extends JFrame implements Observer {
 		strategyPanel.setBorder(BorderFactory.createTitledBorder("Strategy"));
 		strategyPanel.setLayout(new BoxLayout(strategyPanel, BoxLayout.PAGE_AXIS));
 		
+		//Buttons
 		JRadioButton lowBudgetButton = new JRadioButton("low Budget");
 		JRadioButton highBudgetButton = new JRadioButton("high Budget");
 		
+		// registering listeners for the radio Buttons
+		
+		lowBudgetButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MessageSender.setMessageSenderStrategy( new LowBudgetStrategy());
+				System.out.println("strategy changed to low budget");
+			}
+		});
+		
+		highBudgetButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MessageSender.setMessageSenderStrategy( new HighBudgetStrategy());
+				System.out.println("strategy changed to high budget");
+			}
+		});
+		
+		// adding them to the Panel
 		strategyPanel.add(lowBudgetButton);
 		strategyPanel.add(highBudgetButton);
 		
+		// inital values
+		lowBudgetButton.setSelected(true);
+		MessageSender.setMessageSenderStrategy(new LowBudgetStrategy());
+		
+		// creating the sendButton including listener
 		JButton sendButton = new JButton("Send Mails");
 		sendButton.addActionListener(new SendButtonActionListener());
 		
 		strategyPanel.add(sendButton);
 		
+		// binding the radioButtons exclusively through a ButtonGroup
 		ButtonGroup group = new ButtonGroup();
 		group.add(lowBudgetButton);
 		group.add(highBudgetButton);
@@ -154,11 +188,8 @@ public class AddressListView extends JFrame implements Observer {
 		constraints.gridy = 2;
 		
 		add(strategyPanel, constraints);
-		
-		
-		
-		// packing the whole window together
-		
+				
+		// packing the whole window together		
 		
 		this.pack();
 	}
