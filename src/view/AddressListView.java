@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Logger;
 
 import javax.swing.DefaultListModel;
@@ -23,7 +25,7 @@ import model.Address;
 import model.AddressList;
 
 @SuppressWarnings("serial")
-public class AddressListView extends JFrame {
+public class AddressListView extends JFrame implements Observer {
 	
 	// member fields, the AddressList to display and a ListModel
 	private AddressList addressList;
@@ -32,12 +34,13 @@ public class AddressListView extends JFrame {
 	// create a AddressListView
 	public AddressListView(AddressList addressList) {
 		System.out.println("constructing AddressListView");
-		
 		this.addressList = addressList;
+		addressList.addObserver(this);
+		
 		init();
 		populateFields();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	// Setting up the view
@@ -94,7 +97,6 @@ public class AddressListView extends JFrame {
 	public void addAddress(Address address) {
 		System.out.println("ALV: adding address");
 		addressList.add(address);
-		this.refreshAddressList();
 	}
 
 	// filling the ListModel with addresses
@@ -105,10 +107,21 @@ public class AddressListView extends JFrame {
 
 	// getting the addresses from the model
 	private void refreshAddressList() {
+
 		System.out.println("ALV: refreshing AddressListView");
 		listModel.removeAllElements();
 		for (Address address : addressList) {
 			listModel.addElement(address.toString());
 		}
 	}
+
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		System.out.println("ALV: updating...");
+		populateFields();
+	}
+	
+	
 }
