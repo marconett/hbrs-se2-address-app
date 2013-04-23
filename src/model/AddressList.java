@@ -16,7 +16,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	
 	
 	private AddressList(){
-		System.out.println("constructing AddressList");
+		System.out.println("AL: constructing...");
 	}
 	
 	public static AddressList getInstance(){
@@ -42,7 +42,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	@Override
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
-		System.out.println("AL: notifying observers");
+		System.out.println("AL: notifying observers...");
 //		System.out.println(addressList.toString());
 		setChanged();
 		super.notifyObservers();
@@ -59,6 +59,14 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 		System.out.println("AL: removing address " + e);
 		boolean result = addressList.remove(e);
 		notifyObservers();
+		return result;
+	}
+	
+	public boolean contains(AbstractAddress e){
+		System.out.print("AL: checking if address already present....");
+		boolean result = addressList.contains(e);
+		System.out.println(result);
+//		notifyObservers();
 		return result;
 	}
 

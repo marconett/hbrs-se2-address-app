@@ -17,7 +17,7 @@ public class AddPostalActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("Add new postal address...");
+		System.out.println("ACTION: add new PostalAddress...");
 		PostalAddress address = new PostalAddress();
 		new PostalAddressView(alv, address);
 	}

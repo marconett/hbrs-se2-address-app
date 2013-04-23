@@ -25,18 +25,25 @@ public class SpeicherButtonActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("SpeicherButtonListener: saving Address to AddressList");
-		// get the input from the AddressView and
-		// add the Address to the AddressList
-		av.retrieveFields();
+		System.out.println("ACTION: saving or editing Address...");
+		
 		
 		/* Debug
 		if(address == null)
 			System.out.println("a ist null");
 		*/
-		System.out.println(address.toString());
 		AddressList al = AddressList.getInstance();
-		al.add(address);
+		if (!al.contains(address)){
+			av.retrieveFields();
+			al.add(address);
+			System.out.println("ACTION: address has been added");
+		}
+		else{
+			// get the input from the AddressView
+			//changing the already present address
+			av.retrieveFields();
+			System.out.println("ACTION: address has been modified");
+		}			
 
 		// close the Window
 		Container container = (Container) e.getSource();

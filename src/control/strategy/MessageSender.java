@@ -16,7 +16,7 @@ public class MessageSender {
 	}
 	
 	public static void sendMessageToAll(String msg){
-		System.out.println("starting to send messages. OPTION: " + strategy.strategyName());
+		System.out.println("ACTION: starting to send messages ENABLED_OPTION: " + strategy.strategyName());
 		for( AbstractAddress address: AddressList.getInstance()){
 			strategy.sendMessageTo(msg, address);
 		}

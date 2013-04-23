@@ -27,7 +27,7 @@ public class PostalAddressView extends AbstractAddressView {
 	
 	public PostalAddressView(AddressListView alv, PostalAddress address) {
 		super(alv, address);
-		System.out.println("constructing PostalAddressView..");
+		System.out.println("PAV: constructing...");
 		this.address = address;
 		
 		populateFields();
@@ -40,7 +40,7 @@ public class PostalAddressView extends AbstractAddressView {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		System.out.println("initializing PostalAddressView");
+		System.out.println("PAV: initializing...");
 		// Setting Jframe-title and layout (The Window)
 		setTitle("Email Address");
 		upperPanel.setLayout(new GridLayout(6, 2 , 5, 5 ));
@@ -86,6 +86,7 @@ public class PostalAddressView extends AbstractAddressView {
 
 	@Override
 	protected void populateFields() {
+		System.out.println("PAV: populating fields...");
 		nameTextField.setText(address.getName());
 		emailaddressTextField.setText(address.getEmailaddress());
 		straßeTextfield.setText(address.getStraße());
@@ -96,6 +97,7 @@ public class PostalAddressView extends AbstractAddressView {
 
 	@Override
 	public void retrieveFields() {
+		System.out.println("PAV: retrieving fields...");
 		address.setName(nameTextField.getText());
 		address.setEmailaddress(emailaddressTextField.getText());
 		address.setStraße(straßeTextfield.getText());

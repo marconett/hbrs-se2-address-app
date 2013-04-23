@@ -9,7 +9,7 @@ public class EmailOnlyAddress extends AbstractAddress {
 
 	public EmailOnlyAddress(){
 		super();
-		System.out.println("constructing email address");		
+		System.out.println("EOA: constructing...");		
 	}
 	
 	

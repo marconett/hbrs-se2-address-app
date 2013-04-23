@@ -17,7 +17,7 @@ public class HighBudgetStrategy implements MessageSendStrategy {
 	public void sendMessageTo(String msg, AbstractAddress address) {
 		// TODO Auto-generated method stub
 		if ( address instanceof PostalAddress)
-			System.out.println("Sending Postal Mail: " + msg + " To: " + address);
+			System.out.println("MESSAGE_SENDER: Sending Postal Mail: " + msg + " To: " + address);
 		else
 			FALLBACK.sendMessageTo(msg, address);			
 	}

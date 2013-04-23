@@ -11,7 +11,7 @@ public abstract class AbstractAddress implements Serializable {
 	private String emailaddress;
 
 	public AbstractAddress() {
-		System.out.println("constructing AbstractAddress");
+		System.out.println("AA: constructing...");
 		name = "";
 		emailaddress = "";
 	}

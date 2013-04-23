@@ -5,6 +5,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,10 +20,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import control.listeners.AddEmailButtonActionListener;
 import control.listeners.AddPostalActionListener;
 import control.listeners.DeleteButtonActionListener;
+import control.listeners.DoubleClickListener;
 import control.listeners.ReadButtonActionListener;
 import control.listeners.SaveButtonActionListener;
 import control.listeners.SendButtonActionListener;
@@ -31,6 +35,8 @@ import control.strategy.MessageSender;
 
 import model.AbstractAddress;
 import model.AddressList;
+
+import view.AbstractAddressView;
 
 @SuppressWarnings("serial")
 public class AddressListView extends JFrame implements Observer {
@@ -42,7 +48,7 @@ public class AddressListView extends JFrame implements Observer {
 
 	// create a AddressListView
 	public AddressListView() {
-		System.out.println("constructing AddressListView");
+		System.out.println("ALV: constructing....");
 		AddressList.getInstance().addObserver(this);
 		
 		init();
@@ -53,7 +59,7 @@ public class AddressListView extends JFrame implements Observer {
 	
 	// Setting up the view
 	private void init() {
-		System.out.println("initilazing AddressListView");
+		System.out.println("ALV: initilazing...");
 
 		// setting Jframe (Window) title and layout
 		this.setTitle("Address-List");
@@ -72,6 +78,11 @@ public class AddressListView extends JFrame implements Observer {
 		// creating the JScrollPane
 		listModel = new DefaultListModel();
 		JList list = new JList(listModel);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		// Mouse Listener
+		list.addMouseListener(new DoubleClickListener(this));	
+		
 		JScrollPane scrollpane = new JScrollPane(list);
 		
 		// adding the JScrollPane to the JFrame with its specific constraints
@@ -152,7 +163,7 @@ public class AddressListView extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				MessageSender.setMessageSenderStrategy( new LowBudgetStrategy());
-				System.out.println("strategy changed to low budget");
+				System.out.println("ACTION: strategy changed to low budget");
 			}
 		});
 		
@@ -162,7 +173,7 @@ public class AddressListView extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				MessageSender.setMessageSenderStrategy( new HighBudgetStrategy());
-				System.out.println("strategy changed to high budget");
+				System.out.println("ACTION: strategy changed to high budget");
 			}
 		});
 		
@@ -206,11 +217,9 @@ public class AddressListView extends JFrame implements Observer {
 		
 		constraints.gridx = 2;
 		constraints.gridy = 0;
-		constraints.gridheight = 1;
+		constraints.gridheight = 1;		
 		
-		
-		add(commandPanel, constraints);
-		
+		add(commandPanel, constraints);		
 				
 		// packing the whole window together		
 		
@@ -219,14 +228,14 @@ public class AddressListView extends JFrame implements Observer {
 
 	// filling the ListModel with addresses
 	private void populateFields() {
-		System.out.println("ALV: populating Fields");
+		System.out.println("ALV: populating fields...");
 		refreshAddressList();
 	}
 
 	// getting the addresses from the model
 	private void refreshAddressList() {
 
-		System.out.println("ALV: refreshing AddressListView");
+		System.out.println("ALV: refreshing view...");
 		listModel.removeAllElements();
 		for (AbstractAddress address : addressList.getAddressList()) {
 			listModel.addElement(address);

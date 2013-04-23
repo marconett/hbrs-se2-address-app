@@ -18,7 +18,7 @@ public class PostalAddress extends AbstractAddress {
 		hausnummer = "";
 		plz = "";
 		ort = "";
-		System.out.println("constructing postal address");
+		System.out.println("PA: constructing...");
 	}
 
 

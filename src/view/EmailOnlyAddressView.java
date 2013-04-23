@@ -20,7 +20,7 @@ public class EmailOnlyAddressView extends AbstractAddressView {
 	// operation
 	public EmailOnlyAddressView(AddressListView addressListView, EmailOnlyAddress address) {
 		super(addressListView, address);
-		System.out.println("constructing EmailOnlyAddressView..");
+		System.out.println("EOAV: constructing...");
 		this.address = address;
 		
 		populateFields();
@@ -32,7 +32,7 @@ public class EmailOnlyAddressView extends AbstractAddressView {
 	
 	protected void init() {
 		
-		System.out.println("initializing EmailOnlyAddressView");
+		System.out.println("EOAV: initializing...");
 		// Setting Jframe-title and layout (The Window)
 		setTitle("Email Address");
 						
@@ -58,14 +58,14 @@ public class EmailOnlyAddressView extends AbstractAddressView {
 	
 	// getting the fields of address which ought to be displayed
 	protected void populateFields() {
-		System.out.println("EOAV: populating fields");
+		System.out.println("EOAV: populating fields...");
 		nameTextField.setText(address.getName());
 		emailaddressTextField.setText(address.getEmailaddress());
 	}
 	
 	// setting the fields to the values of the textfields if manipulated
 	public void retrieveFields() {
-		System.out.println("EOAV: retrieving fields " + nameTextField.getText() + " " + emailaddressTextField.getText() );
+//		System.out.println("EOAV: retrieving fields " + nameTextField.getText() + " " + emailaddressTextField.getText() );
 		if (address == null)
 			System.out.println("address ist null");
 		address.setName(nameTextField.getText());

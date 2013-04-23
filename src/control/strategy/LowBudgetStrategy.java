@@ -12,7 +12,7 @@ public class LowBudgetStrategy implements MessageSendStrategy {
 
 	@Override
 	public void sendMessageTo(String msg, AbstractAddress address) {
-		System.out.println("Sending Email: " + msg + " To: " + address);		
+		System.out.println("MESSAGE_SENDER: Sending Email: " + msg + " To: " + address);		
 	}
 
 }
