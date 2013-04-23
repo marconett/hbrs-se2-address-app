@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Address implements Serializable {
+public abstract class AbstractAddress implements Serializable {
 
 	private static final long serialVersionUID = 6780532528672421304L;
 	
@@ -10,17 +10,14 @@ public class Address implements Serializable {
 	private String name;
 	private String emailaddress;
 
-	public Address() {
-		System.out.println("constructing Address");
-		init();
+	public AbstractAddress() {
+		System.out.println("constructing AbstractAddress");
+		name = "";
+		emailaddress = "";
 	}
 	
 	// initializing the values
-	private void init() {
-		System.out.println("initializing Address");
-		this.name = "";
-		this.emailaddress = "";
-	}
+	
 
 	public void setName(String name) {
 		this.name = name;
@@ -40,6 +37,6 @@ public class Address implements Serializable {
 	
 	// overriding the toString()-method
 	public String toString() {
-		return name + " " + emailaddress;
+		return String.format("%s %s", name, emailaddress);
 	}
 }

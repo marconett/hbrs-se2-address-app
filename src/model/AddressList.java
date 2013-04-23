@@ -7,17 +7,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 // AddressList is just an subclass of an LinkedList<Address>
-public class AddressList extends Observable implements Serializable, Iterable<Address> {
+public class AddressList extends Observable implements Serializable, Iterable<AbstractAddress> {
 	private static final long serialVersionUID = -8436170099085318899L;
 	
-	private LinkedList<Address> addressList = new LinkedList<Address>();
+	private LinkedList<AbstractAddress> addressList = new LinkedList<AbstractAddress>();
 	
 	public AddressList(){
 		System.out.println("constructing AddressList");
 	}
 
 	@Override
-	public Iterator<Address> iterator() {
+	public Iterator<AbstractAddress> iterator() {
 		return addressList.iterator();
 	}
 
@@ -31,16 +31,23 @@ public class AddressList extends Observable implements Serializable, Iterable<Ad
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
 		System.out.println("AL: notifying observers");
+//		System.out.println(addressList.toString());
 		setChanged();
 		super.notifyObservers();
 	}
 	
-	public boolean add(Address e){
-		System.out.println("AL: adding address");
+	public boolean add(AbstractAddress e){
+		System.out.println("AL: adding address " + e.toString());
 		boolean result = addressList.add(e);
 		notifyObservers();
 		return result;		
 	}
+
+	public LinkedList<AbstractAddress> getAddressList() {
+		return addressList;
+	}
+	
+	
 	
 	
 }

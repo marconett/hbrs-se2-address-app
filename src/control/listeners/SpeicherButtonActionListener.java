@@ -3,26 +3,23 @@ package control.listeners;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-
-import model.Address;
-
+import model.AbstractAddress;
+import view.AbstractAddressView;
 import view.AddressListView;
-import view.AddressView;
+
 
 public class SpeicherButtonActionListener implements ActionListener {
 	
-	AddressListView alv;
-	AddressView av;
-	Address a;
+	protected AddressListView alv;
+	protected AbstractAddressView av;
+	protected AbstractAddress address;
 	
 	
-	public SpeicherButtonActionListener(AddressListView alv, AddressView av, 
-										Address a){
+	public SpeicherButtonActionListener(AddressListView alv, AbstractAddressView av){
 		this.alv = alv;
 		this.av = av;
-		this.a = a;
+		this.address = av.getAddress();
 	}
 	
 	@Override
@@ -31,7 +28,10 @@ public class SpeicherButtonActionListener implements ActionListener {
 		// get the input from the AddressView and
 		// add the Address to the AddressList
 		av.retrieveFields();
-		alv.addAddress(a);
+		if(address == null)
+			System.out.println("a ist null");
+		System.out.println(address.toString());
+		alv.addAddress(address);
 
 		// close the Window
 		Container container = (Container) e.getSource();

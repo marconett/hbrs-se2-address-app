@@ -2,16 +2,8 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Logger;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +14,7 @@ import control.listeners.AddEmailButtonActionListener;
 import control.listeners.AddPostalActionListener;
 import control.listeners.SaveButtonActionListener;
 
-import model.Address;
+import model.AbstractAddress;
 import model.AddressList;
 
 @SuppressWarnings("serial")
@@ -54,11 +46,12 @@ public class AddressListView extends JFrame implements Observer {
 		
 		// creating the constraints for the JScrollPane
 		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.fill = GridBagConstraints.BOTH;
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		constraints.gridwidth = 2;
+		constraints.gridwidth = 4;
 		constraints.weighty = 0.9;
+		constraints.weightx = 0.9;
 
 		// creating the JScrollPane
 		listModel = new DefaultListModel();
@@ -73,20 +66,24 @@ public class AddressListView extends JFrame implements Observer {
 		final AddressListView alv = this;
 		addEmailButton.addActionListener(new AddEmailButtonActionListener(alv));
 			
-		// changing the constraints to fit to the button
+		// changing the constraints to go with the buttons
 		// adding the button to the JFrame
-		constraints.weighty = 0.1;
-		constraints.gridy = 1;
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.weighty = 0;
+		constraints.weightx = 0;
 		constraints.gridwidth = 1;
+		
+		
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		
 		this.add(addEmailButton, constraints);
 		
 		JButton addPostalButton = new JButton("Add Postal");
-		addPostalButton.addActionListener(new AddPostalActionListener(alv));
-		
-		
-		constraints.weighty = 0.1;
-		constraints.gridy = 2;
-		constraints.gridwidth = 1;
+		addPostalButton.addActionListener(new AddPostalActionListener(alv));		
+				
+		constraints.gridx = 1;
+		constraints.gridy = 1;
 		this.add(addPostalButton, constraints);
 
 		// creating a saveButton abd registering a new listener
@@ -95,8 +92,9 @@ public class AddressListView extends JFrame implements Observer {
 					
 		// changing the constraints to fit to the button
 		// adding the button to the JFrame
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		constraints.gridy = 1;
+			
 		this.add(saveButton, constraints);
 		
 		// packing the whole window together
@@ -104,7 +102,7 @@ public class AddressListView extends JFrame implements Observer {
 	}
 	
 	// adding an address to the addressList-model
-	public void addAddress(Address address) {
+	public void addAddress(AbstractAddress address) {
 		System.out.println("ALV: adding address");
 		addressList.add(address);
 	}
@@ -120,7 +118,7 @@ public class AddressListView extends JFrame implements Observer {
 
 		System.out.println("ALV: refreshing AddressListView");
 		listModel.removeAllElements();
-		for (Address address : addressList) {
+		for (AbstractAddress address : addressList.getAddressList()) {
 			listModel.addElement(address.toString());
 		}
 	}

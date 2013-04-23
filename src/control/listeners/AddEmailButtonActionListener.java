@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import view.AddressListView;
-import view.AddressView;
+import view.EmailOnlyAddressView;
 
-import model.Address;
+
+import model.EmailOnlyAddress;
 
 public class AddEmailButtonActionListener implements ActionListener {
 
@@ -23,8 +24,8 @@ public class AddEmailButtonActionListener implements ActionListener {
 	// link the addressView to the addressListView
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("Add new email address...");
-		Address address = new Address();
-		new AddressView(address, alv);
+		EmailOnlyAddress address = new EmailOnlyAddress();
+		new EmailOnlyAddressView(alv, address);
 	}
 
 }

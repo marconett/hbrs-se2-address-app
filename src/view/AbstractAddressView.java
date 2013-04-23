@@ -6,6 +6,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.AbstractAddress;
+
+import control.listeners.SpeicherButtonActionListener;
+
 
 
 
@@ -18,14 +22,16 @@ public abstract class AbstractAddressView extends JFrame {
 	
 
 	protected AddressListView addressListView;
+	protected AbstractAddress address;
 	protected JPanel upperPanel;
 	protected JButton speicherButton;
 
 	// the Gui-Fields
 
 
-	public AbstractAddressView(AddressListView alv){
+	public AbstractAddressView(AddressListView alv, AbstractAddress aa){
 		this.addressListView = alv;
+		this.address = aa;
 
 		initabstract();		
 
@@ -46,7 +52,9 @@ public abstract class AbstractAddressView extends JFrame {
 		this.add(upperPanel, BorderLayout.NORTH);
 
 		// creating the SpeicherButton and register an new Listener
-		speicherButton = new JButton("Hinterlegen");		
+		speicherButton = new JButton("Hinterlegen");
+		speicherButton.addActionListener(new SpeicherButtonActionListener(addressListView, this));
+
 
 		// adding it to the JFrame
 		this.add(speicherButton, BorderLayout.SOUTH);
@@ -56,6 +64,10 @@ public abstract class AbstractAddressView extends JFrame {
 		
 		// packing the whole JFrame(Window) together
 		this.pack();
+	}
+	
+	public AbstractAddress getAddress(){
+		return address;
 	}
 
 	
