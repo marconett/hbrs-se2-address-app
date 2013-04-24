@@ -4,6 +4,10 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+
+import control.listener.command.AddCommand;
+import control.listener.command.CommandInvoker;
+import control.listener.command.EditCommand;
 import model.AbstractAddress;
 import model.AddressList;
 import view.AbstractAddressView;
@@ -11,14 +15,12 @@ import view.AddressListView;
 
 
 public class SpeicherButtonActionListener implements ActionListener {
+		
+	private AbstractAddressView av;
+	private AbstractAddress address;
 	
-	protected AddressListView alv;
-	protected AbstractAddressView av;
-	protected AbstractAddress address;
 	
-	
-	public SpeicherButtonActionListener(AddressListView alv, AbstractAddressView av){
-		this.alv = alv;
+	public SpeicherButtonActionListener(AbstractAddressView av){
 		this.av = av;
 		this.address = av.getAddress();
 	}
@@ -26,23 +28,22 @@ public class SpeicherButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("ACTION: clicked to save or edit Address...");
-		
-		
-		/* Debug
-		if(address == null)
-			System.out.println("a ist null");
-		*/
 		AddressList al = AddressList.getInstance();
-		if (!al.contains(address)){
+				
+		if (al.contains(address)){
+			AbstractAddress previous;
+			try{
+				previous = (AbstractAddress)address.clone();
+			}
+			catch (CloneNotSupportedException e1){
+				throw new IllegalStateException("Can't clone address");
+			}
 			av.retrieveFields();
-			al.add(address);
-			System.out.println("ACTION: address has been added");
+			CommandInvoker.getInstance().invoke( new EditCommand(previous, address) );
 		}
 		else{
-			// get the input from the AddressView
-			//changing the already present address
 			av.retrieveFields();
-			System.out.println("ACTION: address has been modified");
+			CommandInvoker.getInstance().invoke( new AddCommand(address));
 		}			
 
 		// close the Window

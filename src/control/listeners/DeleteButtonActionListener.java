@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JList;
 
+import control.listener.command.CommandInvoker;
+import control.listener.command.RemoveCommand;
+
 import model.AbstractAddress;
 import model.AddressList;
 
@@ -23,8 +26,10 @@ public class DeleteButtonActionListener implements ActionListener {
 		
 		System.out.println("ACTION: clicked to remove address: " + (AbstractAddress)selectedAddress);
 		
-		AddressList al = AddressList.getInstance();
-		al.remove( (AbstractAddress)selectedAddress);		
+		if( ( selectedAddress != null) && (selectedAddress instanceof AbstractAddress)){
+			CommandInvoker.getInstance().invoke( new RemoveCommand( (AbstractAddress)selectedAddress));
+		}
+			
 	}
 	
 }

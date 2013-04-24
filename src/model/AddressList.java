@@ -73,6 +73,11 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	public LinkedList<AbstractAddress> getAddressList() {
 		return addressList;
 	}
+
+	public void edit(AbstractAddress address) {
+		// TODO Auto-generated method stub
+		// address already has been edited no need to do stuff
+	}
 	
 	
 	

@@ -53,7 +53,7 @@ public abstract class AbstractAddressView extends JFrame {
 
 		// creating the SpeicherButton and register an new Listener
 		speicherButton = new JButton("Hinterlegen");
-		speicherButton.addActionListener(new SpeicherButtonActionListener(addressListView, this));
+		speicherButton.addActionListener(new SpeicherButtonActionListener(this));
 
 
 		// adding it to the JFrame

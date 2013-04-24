@@ -27,8 +27,10 @@ import control.listeners.AddPostalActionListener;
 import control.listeners.DeleteButtonActionListener;
 import control.listeners.DoubleClickListener;
 import control.listeners.ReadButtonActionListener;
+import control.listeners.RedoButtonActionListener;
 import control.listeners.SaveButtonActionListener;
 import control.listeners.SendButtonActionListener;
+import control.listeners.UndoButtonActionListener;
 import control.strategy.HighBudgetStrategy;
 import control.strategy.LowBudgetStrategy;
 import control.strategy.MessageSender;
@@ -68,10 +70,9 @@ public class AddressListView extends JFrame implements Observer {
 		// creating the constraints and setting values for the JScrollPane
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.fill = GridBagConstraints.BOTH;
-		constraints.gridx = 1;
-		constraints.gridy = 0;
-		constraints.gridheight = 3;
-		constraints.gridwidth = 1;
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		constraints.gridwidth = 5;
 		constraints.weighty = 0.9;
 		constraints.weightx = 0.9;
 
@@ -91,9 +92,14 @@ public class AddressListView extends JFrame implements Observer {
 		
 		//// Creating and Adding the Email Panel
 		
+		constraints.gridheight = 1;
+		constraints.gridwidth = 1;
+		constraints.weightx = 0;
+		constraints.weighty = 0;
+		
 		JPanel emailPanel = new JPanel();
 		emailPanel.setBorder(BorderFactory.createTitledBorder("Emails"));
-		emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.PAGE_AXIS));
+		emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.LINE_AXIS));
 				
 		final AddressListView alv = this;
 		
@@ -113,9 +119,7 @@ public class AddressListView extends JFrame implements Observer {
 		
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		constraints.gridheight = 1;
-		constraints.weightx = 0;
-		constraints.weighty = 0;
+		
 		
 		add(emailPanel, constraints);
 		
@@ -124,24 +128,24 @@ public class AddressListView extends JFrame implements Observer {
 		
 		JPanel ioPanel = new JPanel();
 		ioPanel.setBorder(BorderFactory.createTitledBorder("Save & Load"));
-		ioPanel.setLayout(new BoxLayout(ioPanel, BoxLayout.PAGE_AXIS));
+		ioPanel.setLayout(new BoxLayout(ioPanel, BoxLayout.LINE_AXIS));
 
 		// creating a saveButton and readButton registering a new listener
 		JButton saveButton = new JButton("Save all");
-		saveButton.setAlignmentX(CENTER_ALIGNMENT);
+		//saveButton.setAlignmentX(CENTER_ALIGNMENT);
 		saveButton.setMaximumSize(getPreferredSize());
 		saveButton.addActionListener(new SaveButtonActionListener());
 		
 		JButton readButton = new JButton("Read all");
-		readButton.setAlignmentX(CENTER_ALIGNMENT);
+		//readButton.setAlignmentX(CENTER_ALIGNMENT);
 		readButton.setMaximumSize(getPreferredSize());
 		readButton.addActionListener(new ReadButtonActionListener());
 		
 		ioPanel.add(saveButton);
 		ioPanel.add(readButton);
 		
-		constraints.gridx = 0;
-		constraints.gridy = 1;
+		constraints.gridx = 1;
+		constraints.gridy = 0;
 							
 		add(ioPanel, constraints);
 		
@@ -149,7 +153,7 @@ public class AddressListView extends JFrame implements Observer {
 		
 		JPanel strategyPanel = new JPanel();
 		strategyPanel.setBorder(BorderFactory.createTitledBorder("Strategy"));
-		strategyPanel.setLayout(new BoxLayout(strategyPanel, BoxLayout.PAGE_AXIS));
+		strategyPanel.setLayout(new BoxLayout(strategyPanel, BoxLayout.LINE_AXIS));
 		
 		//Buttons
 		JRadioButton lowBudgetButton = new JRadioButton("low Budget");
@@ -196,8 +200,8 @@ public class AddressListView extends JFrame implements Observer {
 		group.add(lowBudgetButton);
 		group.add(highBudgetButton);
 		
-		constraints.gridx = 0;
-		constraints.gridy = 2;
+		constraints.gridx = 2;
+		constraints.gridy = 0;
 		
 		add(strategyPanel, constraints);
 		
@@ -205,19 +209,30 @@ public class AddressListView extends JFrame implements Observer {
 		
 		JPanel commandPanel = new JPanel();
 		commandPanel.setBorder(BorderFactory.createTitledBorder("Commands"));
-		commandPanel.setLayout(new BoxLayout(commandPanel, BoxLayout.PAGE_AXIS));
+		commandPanel.setLayout(new BoxLayout(commandPanel, BoxLayout.LINE_AXIS));
 		
 		
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.setAlignmentX(CENTER_ALIGNMENT);
+		deleteButton.setMaximumSize(getMinimumSize());
+		deleteButton.addActionListener( new DeleteButtonActionListener(list));
+		
+		JButton undoButton = new JButton("Undo");
+		undoButton.setAlignmentX(CENTER_ALIGNMENT);
 		deleteButton.setMaximumSize(getPreferredSize());
-		deleteButton.addActionListener( new DeleteButtonActionListener(list)); 
+		undoButton.addActionListener(new UndoButtonActionListener());
+		
+		JButton redoButton = new JButton("Redo");
+		redoButton.setAlignmentX(CENTER_ALIGNMENT);
+		redoButton.setMaximumSize(getPreferredSize());
+		redoButton.addActionListener(new RedoButtonActionListener());
 		
 		commandPanel.add(deleteButton);
+		commandPanel.add(undoButton);
+		commandPanel.add(redoButton);
 		
-		constraints.gridx = 2;
-		constraints.gridy = 0;
-		constraints.gridheight = 1;		
+		constraints.gridx = 3;
+		constraints.gridy = 0;		
 		
 		add(commandPanel, constraints);		
 				

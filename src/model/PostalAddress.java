@@ -66,6 +66,18 @@ public class PostalAddress extends AbstractAddress {
 		return super.toString() + String.format(" %s %s %s %s", straße, hausnummer, plz , ort);
 	}
 	
+	@Override
+	protected void copyOf( final AbstractAddress address){
+		
+		super.copyOf(address);
+		
+		PostalAddress p = (PostalAddress)address;
+		
+		straße = p.getStraße();
+		hausnummer = p.getHausnummer();
+		plz = p.getPlz();
+		ort = p.getOrt();
+	}
 	
 
 }

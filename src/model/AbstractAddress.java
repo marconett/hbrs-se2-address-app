@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class AbstractAddress implements Serializable {
+public abstract class AbstractAddress implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 6780532528672421304L;
 	
@@ -38,5 +38,19 @@ public abstract class AbstractAddress implements Serializable {
 	// overriding the toString()-method
 	public String toString() {
 		return String.format("%s %s", name, emailaddress);
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		AbstractAddress clone = (AbstractAddress)super.clone();
+		
+		clone.copyOf (this);
+		return clone;
+	}
+	
+	// needs to be extended in subclasses
+	protected void copyOf(final AbstractAddress address){
+		name = address.getName();
+		emailaddress = address.getEmailaddress();
 	}
 }
