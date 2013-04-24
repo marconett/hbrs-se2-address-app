@@ -31,15 +31,16 @@ public class SpeicherButtonActionListener implements ActionListener {
 		AddressList al = AddressList.getInstance();
 				
 		if (al.contains(address)){
-			AbstractAddress previous;
+			AbstractAddress previousData;
 			try{
-				previous = (AbstractAddress)address.clone();
+				previousData = (AbstractAddress)address.clone();
 			}
 			catch (CloneNotSupportedException e1){
 				throw new IllegalStateException("Can't clone address");
 			}
+			// this does the editing
 			av.retrieveFields();
-			CommandInvoker.getInstance().invoke( new EditCommand(previous, address) );
+			CommandInvoker.getInstance().invoke( new EditCommand(previousData, address) );
 		}
 		else{
 			av.retrieveFields();

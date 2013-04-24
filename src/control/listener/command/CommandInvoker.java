@@ -43,6 +43,7 @@ public class CommandInvoker extends Observable {
 	
 	public void undo(){
 		if ( canUndo() ){
+			
 			history.get(current).undo();
 			current--;
 			
@@ -57,6 +58,7 @@ public class CommandInvoker extends Observable {
 		if ( canRedo() ){
 			current++;
 			history.get(current).redo();
+			
 			
 			setChanged();
 			notifyObservers();

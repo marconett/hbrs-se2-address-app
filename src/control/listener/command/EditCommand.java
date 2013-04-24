@@ -4,20 +4,33 @@ import model.AbstractAddress;
 import model.AddressList;
 
 public class EditCommand extends AbstractCommand {
-	private final AbstractAddress previous;
 	
-	public EditCommand(final AbstractAddress previous, final AbstractAddress adr){
-		super(adr);
-		this.previous = previous;
+	private final AbstractAddress previousData;
+	private final AbstractAddress changedData;
+	
+	public EditCommand( final AbstractAddress previousData, final AbstractAddress address){
+		super(address);
+		this.previousData = previousData;
+		
+		try{
+			changedData = (AbstractAddress)address.clone();
+		}
+		catch (CloneNotSupportedException e1){
+			throw new IllegalStateException("Can't clone address");
+		}
 	}
 
 	@Override
 	public void undo() {
+		
 		System.out.println("EDIT_COMMAND: undoing...");
 		AddressList addressList = AddressList.getInstance();
 		
-		addressList.remove(address);
-		addressList.add(previous);
+		if ( addressList.contains(address)){
+			addressList.edit(address, previousData);
+			
+		}
+		//addressList.add(previous);
 
 	}
 
@@ -27,7 +40,7 @@ public class EditCommand extends AbstractCommand {
 		AddressList addressList = AddressList.getInstance();
 		
 		if ( addressList.contains(address)){
-			addressList.edit(address);
+			addressList.edit(address, changedData);
 		}
 
 	}

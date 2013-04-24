@@ -53,4 +53,10 @@ public abstract class AbstractAddress implements Serializable, Cloneable {
 		name = address.getName();
 		emailaddress = address.getEmailaddress();
 	}
+	
+	// needs to be extended in subclass
+	public void changeTo(AbstractAddress newData){
+		this.name = newData.getName();
+		this.emailaddress = newData.getEmailaddress();
+	}
 }

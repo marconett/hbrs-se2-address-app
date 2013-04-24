@@ -79,5 +79,19 @@ public class PostalAddress extends AbstractAddress {
 		ort = p.getOrt();
 	}
 	
+	@Override
+	public void changeTo(AbstractAddress newData){
+		
+		super.changeTo(newData);
+		
+		PostalAddress p = (PostalAddress)newData;
+		
+		this.straße = p.getStraße();
+		this.hausnummer = p.getHausnummer();
+		this.plz = p.getPlz();
+		this.ort = p.getOrt();
+		
+	}
+	
 
 }

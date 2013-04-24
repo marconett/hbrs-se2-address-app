@@ -74,9 +74,12 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 		return addressList;
 	}
 
-	public void edit(AbstractAddress address) {
+	public void edit(AbstractAddress oldData, AbstractAddress newData ) {
 		// TODO Auto-generated method stub
 		// address already has been edited no need to do stuff
+		addressList.get(addressList.indexOf(oldData)).changeTo(newData);
+		
+		notifyObservers();
 	}
 	
 	
