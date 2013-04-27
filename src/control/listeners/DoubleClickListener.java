@@ -12,6 +12,7 @@ import view.AbstractAddressView;
 import view.AddressListView;
 import view.EmailOnlyAddressView;
 import view.PostalAddressView;
+import view.decorator.AddressDecorator;
 
 public class DoubleClickListener extends MouseAdapter {
 	
@@ -28,18 +29,20 @@ public class DoubleClickListener extends MouseAdapter {
 	        if (index == -1)
 	             System.out.println("Sie haben nichts ausgewählt.");
 	        else {
+	        	
 	        	 System.out.println("ACTION: selected address via mouse...");
-	             AbstractAddress address = (AbstractAddress) ((JList) e.getSource()).getSelectedValue();
-	             // Ihr Code
-	             if ( address instanceof EmailOnlyAddress)
-	            	 new EmailOnlyAddressView(alv, (EmailOnlyAddress)address);
+	             AddressDecorator decorator = (AddressDecorator) ((JList) e.getSource()).getSelectedValue();
 	             
-	             else if ( address instanceof PostalAddress)
-	            	 new PostalAddressView(alv, (PostalAddress)address);
+	             // Ihr Code
+	             if ( decorator.getUndecoratedAddress() instanceof EmailOnlyAddress)
+	            	 new EmailOnlyAddressView(alv, (EmailOnlyAddress)decorator.getUndecoratedAddress());
+	             
+	             else if ( decorator.getUndecoratedAddress() instanceof PostalAddress)
+	            	 new PostalAddressView(alv, (PostalAddress)decorator.getUndecoratedAddress());
 	             else
 	            	 System.out.println("No such AddressType");
-	        }
+	       }
 	    }
-	  }
+	}
 
 }

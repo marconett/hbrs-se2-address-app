@@ -12,7 +12,6 @@ public class PostalAddress extends AbstractAddress {
 	
 	
 	public PostalAddress() {
-		// TODO Auto-generated constructor stub
 		super();
 		straße = "";
 		hausnummer = "";
@@ -63,7 +62,7 @@ public class PostalAddress extends AbstractAddress {
 	
 	@Override
 	public String toString(){
-		return super.toString() + String.format(" %s %s %s %s", straße, hausnummer, plz , ort);
+		return super.toString() + String.format("%s, %s, %s, %s", straße, hausnummer, plz , ort);
 	}
 	
 	@Override

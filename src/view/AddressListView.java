@@ -39,6 +39,7 @@ import model.AbstractAddress;
 import model.AddressList;
 
 import view.AbstractAddressView;
+import view.decorator.AddressDecorator;
 
 @SuppressWarnings("serial")
 public class AddressListView extends JFrame implements Observer {
@@ -252,8 +253,8 @@ public class AddressListView extends JFrame implements Observer {
 
 		System.out.println("ALV: refreshing view...");
 		listModel.removeAllElements();
-		for (AbstractAddress address : addressList.getAddressList()) {
-			listModel.addElement(address);
+		for (AbstractAddress address : addressList) {
+			listModel.addElement(new AddressDecorator(address));
 		}
 	}
 	
