@@ -10,9 +10,6 @@ import java.util.Date;
 import model.AddressList;
 
 public class SaveButtonActionListener implements ActionListener {
-
-	
-	private AddressList al = AddressList.getInstance();
 	
 	public SaveButtonActionListener(){
 		super();
@@ -22,17 +19,8 @@ public class SaveButtonActionListener implements ActionListener {
 	// writing it out into a file
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("ACTION: clicked to save to disk, serializing data...");
-		FileOutputStream fos = null;
-		ObjectOutputStream out = null;
-		try {
-			fos = new FileOutputStream((new Date().getTime() + ".ser"));
-			out = new ObjectOutputStream(fos);
-			out.writeObject(al);
-			out.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		System.out.println("ACTION: clicked to save data to disk, serializing data...");
+		AddressList.getInstance().saveAll();
 	}
 
 }

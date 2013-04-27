@@ -1,8 +1,15 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,7 +17,7 @@ import java.util.Observer;
 public class AddressList extends Observable implements Serializable, Iterable<AbstractAddress> {
 	private static final long serialVersionUID = -8436170099085318899L;
 	
-	private static LinkedList<AbstractAddress> addressList = new LinkedList<AbstractAddress>();
+	private static List<AbstractAddress> m_addressList = new LinkedList<AbstractAddress>();
 	private static AddressList singelton;
 	
 	
@@ -21,16 +28,18 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	
 	public static AddressList getInstance(){
 		if ( singelton == null){
-			singelton = new AddressList();
-			return singelton;
-			}	
-		else
-			return singelton;
+			synchronized (AddressList.class) {
+				if(singelton == null){
+					singelton = new AddressList();
+				}					
+			}			
+		}	
+		return singelton;
 	}
 
 	@Override
 	public Iterator<AbstractAddress> iterator() {
-		return addressList.iterator();
+		return m_addressList.iterator();
 	}
 
 	@Override
@@ -50,36 +59,121 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	
 	public boolean add(AbstractAddress e){
 		System.out.println("AL: adding address " + e);
-		boolean result = addressList.add(e);
+		e.setDirty(true);
+		boolean result = m_addressList.add(e);
 		notifyObservers();
 		return result;		
 	}
 	
 	public boolean remove(AbstractAddress e){
 		System.out.println("AL: removing address " + e);
-		boolean result = addressList.remove(e);
+		boolean result = m_addressList.remove(e);
 		notifyObservers();
 		return result;
 	}
 	
 	public boolean contains(AbstractAddress e){
 		System.out.print("AL: checking if address already present....");
-		boolean result = addressList.contains(e);
+		boolean result = m_addressList.contains(e);
 		System.out.println(result);
 //		notifyObservers();
 		return result;
 	}
 
-	public LinkedList<AbstractAddress> getAddressList() {
-		return addressList;
+	public List<AbstractAddress> getAddressList() {
+		return m_addressList;
 	}
 
 	public void edit(AbstractAddress oldData, AbstractAddress newData ) {
 		// TODO Auto-generated method stub
-		// address already has been edited no need to do stuff
-		addressList.get(addressList.indexOf(oldData)).changeTo(newData);
+		// changing the fields from old to new
+		oldData.setDirty(true);
+		oldData.changeTo(newData);
 		
 		notifyObservers();
+	}
+	
+	public void readAll(){
+		File inputFile = new File( "address_system.dat" );
+        if( !inputFile.exists() ) {
+            return;
+        }
+
+        AddressList addressList = null;
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+
+            fis = new FileInputStream( inputFile );
+            in = new ObjectInputStream( fis );
+            addressList = ( AddressList ) in.readObject();
+            System.out.println("AL: reading in data from " + inputFile);
+            addressList.toString();
+            in.close();
+            
+        }
+        catch( IOException e ) {
+            e.printStackTrace();
+            return;
+        }
+        catch( ClassNotFoundException e ) {
+            e.printStackTrace();
+            return;
+        }
+
+        for( AbstractAddress address : addressList ) {
+        	System.out.println("DEBUG: reading in address: " + address);
+            m_addressList.add( address );
+            address.setDirty(false);
+        }
+        
+        notifyObservers();
+		
+	}
+	
+	public void saveAll(){
+		
+		
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			
+			fos = new FileOutputStream( "address_system.dat" );
+			out = new ObjectOutputStream(fos);
+			System.out.println("AL: writing out data to " + "address_system.dat");
+			System.out.println(this.toString());
+			out.writeObject(this);			
+			out.close();
+			
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			return;
+		}
+		
+		for(AbstractAddress address: this ){
+			address.setDirty(false);
+		}
+		
+		notifyObservers();
+		
+		System.out.println("AL: done writing out data.");
+		
+	}
+	
+	@Override
+	public String toString(){
+		
+		System.out.println("AL: printing addresses...");
+		
+		StringBuffer result = new StringBuffer();
+		
+		for(AbstractAddress address: this){
+			result.append(address.toString() + "\n");
+		}
+	
+		return result.toString();
+		
 	}
 	
 	

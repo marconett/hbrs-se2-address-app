@@ -9,6 +9,7 @@ public abstract class AbstractAddress implements Serializable, Cloneable {
 	// member fields for the address
 	private String name;
 	private String emailaddress;
+	private transient boolean dirty; 
 
 	public AbstractAddress() {
 		System.out.println("AA: constructing...");
@@ -35,9 +36,17 @@ public abstract class AbstractAddress implements Serializable, Cloneable {
 		return emailaddress;
 	}
 	
+	public void setDirty(boolean bool){
+		dirty = bool;
+	}
+	
+	public boolean isDirty(){
+		return dirty;
+	}
+	
 	// overriding the toString()-method
 	public String toString() {
-		return String.format("%s %s", name, emailaddress);
+		return String.format("%s, %s, ", name, emailaddress);
 	}
 	
 	@Override
