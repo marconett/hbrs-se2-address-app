@@ -7,6 +7,7 @@ public class AddressDecorator extends AbstractAddress {
 	
 	public AddressDecorator( final AbstractAddress address){
 		this.address = address;
+		address.setDirty(true);
 	}
 	
 	public AbstractAddress getUndecoratedAddress(){
