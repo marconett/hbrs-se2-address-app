@@ -1,6 +1,8 @@
 package test;
 
+import view.AddressListView;
 import view.decorator.AddressDecorator;
+import model.AddressList;
 import model.EmailOnlyAddress;
 import model.PostalAddress;
 import junit.framework.TestCase;
@@ -24,6 +26,9 @@ public class ModelTest extends TestCase {
 		postalAddress.setHausnummer( "42" ); 
 	 	postalAddress.setPlz( "54321" ); 
 	 	postalAddress.setOrt( "Milkyway" ); 
+	 	
+	 	AddressList.getInstance().add(emailAddress);
+	 	AddressList.getInstance().add(postalAddress);
 	}
 
 	protected void tearDown() throws Exception {
