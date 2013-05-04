@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import model.PostalAddress;
+import model.spring.PostalAddress;
 
 public class PostalAddressView extends AbstractAddressView {
 

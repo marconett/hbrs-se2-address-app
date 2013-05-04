@@ -7,7 +7,7 @@ import view.AddressListView;
 import view.EmailOnlyAddressView;
 
 
-import model.EmailOnlyAddress;
+import model.spring.EmailOnlyAddress;
 
 public class AddEmailButtonActionListener implements ActionListener {
 

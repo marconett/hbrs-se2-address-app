@@ -1,6 +1,6 @@
 package control.strategy;
 
-import model.AbstractAddress;
+import model.spring.AbstractAddress;
 
 public interface MessageSendStrategy {
 	

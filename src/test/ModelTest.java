@@ -2,9 +2,9 @@ package test;
 
 import view.AddressListView;
 import view.decorator.AddressDecorator;
-import model.AddressList;
-import model.EmailOnlyAddress;
-import model.PostalAddress;
+import model.spring.AddressList;
+import model.spring.EmailOnlyAddress;
+import model.spring.PostalAddress;
 import junit.framework.TestCase;
 
 public class ModelTest extends TestCase {
@@ -16,7 +16,7 @@ public class ModelTest extends TestCase {
 		super.setUp(); 
 	 	                 
 	    emailAddress = new EmailOnlyAddress(); 
-	 	emailAddress.setName( "emailname" ); 
+            emailAddress.setName( "emailname" ); 
 	    emailAddress.setEmailaddress( "email" ); 
 	 	                 
 	    postalAddress = new PostalAddress(); 

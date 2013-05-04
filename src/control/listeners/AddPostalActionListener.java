@@ -2,7 +2,7 @@ package control.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.PostalAddress;
+import model.spring.PostalAddress;
 import view.AddressListView;
 import view.PostalAddressView;
 

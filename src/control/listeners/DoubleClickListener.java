@@ -5,9 +5,9 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.JList;
 
-import model.AbstractAddress;
-import model.EmailOnlyAddress;
-import model.PostalAddress;
+import model.spring.AbstractAddress;
+import model.spring.EmailOnlyAddress;
+import model.spring.PostalAddress;
 import view.AbstractAddressView;
 import view.AddressListView;
 import view.EmailOnlyAddressView;

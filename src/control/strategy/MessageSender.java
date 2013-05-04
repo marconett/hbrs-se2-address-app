@@ -1,7 +1,7 @@
 package control.strategy;
 
-import model.AbstractAddress;
-import model.AddressList;
+import model.spring.AbstractAddress;
+import model.spring.AddressList;
 
 public class MessageSender {
 	

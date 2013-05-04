@@ -1,6 +1,6 @@
 package control.listener.command;
 
-import model.AbstractAddress;
+import model.spring.AbstractAddress;
 
 public abstract class AbstractCommand {
 	protected final AbstractAddress address;

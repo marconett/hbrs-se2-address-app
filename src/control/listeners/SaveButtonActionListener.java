@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 
-import model.AddressList;
+import model.spring.AddressList;
 
 public class SaveButtonActionListener implements ActionListener {
 	

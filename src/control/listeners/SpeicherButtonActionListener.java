@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import control.listener.command.AddCommand;
 import control.listener.command.CommandInvoker;
 import control.listener.command.EditCommand;
-import model.AbstractAddress;
-import model.AddressList;
+import model.spring.AbstractAddress;
+import model.spring.AddressList;
 import view.AbstractAddressView;
 import view.AddressListView;
 

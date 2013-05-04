@@ -3,7 +3,7 @@ package control.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.AddressList;
+import model.spring.AddressList;
 
 public class ReadButtonActionListener implements ActionListener {
 

@@ -8,8 +8,8 @@ import javax.swing.JList;
 import control.listener.command.CommandInvoker;
 import control.listener.command.RemoveCommand;
 
-import model.AbstractAddress;
-import model.AddressList;
+import model.spring.AbstractAddress;
+import model.spring.AddressList;
 
 public class DeleteButtonActionListener implements ActionListener {
 	

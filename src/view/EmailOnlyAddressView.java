@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import model.EmailOnlyAddress;
+import model.spring.EmailOnlyAddress;
 
 @SuppressWarnings("serial")
 public class EmailOnlyAddressView extends AbstractAddressView {
