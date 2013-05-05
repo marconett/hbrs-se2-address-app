@@ -6,6 +6,7 @@ import model.spring.AddressList;
 import model.spring.EmailOnlyAddress;
 import model.spring.PostalAddress;
 import junit.framework.TestCase;
+import model.BeansFactory;
 
 public class ModelTest extends TestCase {
 	
@@ -15,11 +16,11 @@ public class ModelTest extends TestCase {
 	protected void setUp() throws Exception {	    
 		super.setUp(); 
 	 	                 
-	    emailAddress = new EmailOnlyAddress(); 
+	    emailAddress = (EmailOnlyAddress) BeansFactory.getIEmailOnlyAddress(); 
             emailAddress.setName( "emailname" ); 
 	    emailAddress.setEmailaddress( "email" ); 
 	 	                 
-	    postalAddress = new PostalAddress(); 
+	    postalAddress = (PostalAddress) BeansFactory.getIPostalAddress(); 
 	 	postalAddress.setName( "postalname" ); 
 	 	postalAddress.setEmailaddress( "email" ); 
 		postalAddress.setStraße( "strasse" ); 

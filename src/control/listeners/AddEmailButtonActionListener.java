@@ -2,6 +2,7 @@ package control.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.BeansFactory;
 
 import view.AddressListView;
 import view.EmailOnlyAddressView;
@@ -24,7 +25,7 @@ public class AddEmailButtonActionListener implements ActionListener {
 	// link the addressView to the addressListView
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("ACTION: clicked to add new EmailOnlyAddress...");
-		EmailOnlyAddress address = new EmailOnlyAddress();
+                EmailOnlyAddress address = (EmailOnlyAddress) BeansFactory.getIEmailOnlyAddress();
 		new EmailOnlyAddressView(alv, address);
 	}
 

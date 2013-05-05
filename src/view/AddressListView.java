@@ -47,11 +47,7 @@ import view.decorator.AddressDecorator;
 public class AddressListView extends JFrame implements Observer {
 	
 	
-	// member fields, the AddressList to display and a ListModel
-        
-	//private AddressList addressList = AddressList.getInstance();
-        //private AddressList addressList = ctx.getBean(AddressList.class);
-        
+	// member fields, the AddressList to display and a ListModel        
         private AddressList addressList = (AddressList) BeansFactory.getIAddressList();
         
 	private DefaultListModel listModel;
