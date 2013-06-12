@@ -1,11 +1,11 @@
 package control.strategy;
 
-import model.hibernatespring.AbstractAddress;
+import model.IAbstractAddress;
 
 public interface MessageSendStrategy {
 	
 	String strategyName();
-	
-	void sendMessageTo( String msg, AbstractAddress address);
+
+	void sendMessageTo(String msg, IAbstractAddress address);
 
 }

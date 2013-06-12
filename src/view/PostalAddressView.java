@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import model.hibernatespring.PostalAddress;
+import model.IPostalAddress;
 
 public class PostalAddressView extends AbstractAddressView {
 
@@ -16,7 +16,7 @@ public class PostalAddressView extends AbstractAddressView {
 	 */
 	private static final long serialVersionUID = -6429235778070722644L;
 	
-	private PostalAddress address;
+	private IPostalAddress address;
 	
 	private JTextField nameTextField;
 	private JTextField emailaddressTextField;
@@ -25,7 +25,7 @@ public class PostalAddressView extends AbstractAddressView {
 	private JTextField plzTextField;
 	private JTextField ortTextField;
 	
-	public PostalAddressView(AddressListView alv, PostalAddress address) {
+	public PostalAddressView(AddressListView alv, IPostalAddress address) {
 		super(alv, address);
 		System.out.println("PAV: constructing...");
 		this.address = address;

@@ -1,15 +1,23 @@
 package view.decorator;
 
-import model.hibernatespring.AbstractAddress;
+import model.IAbstractAddress;
+import model.IEmailOnlyAddress;
+import java.io.Serializable;
 
-public class AddressDecorator extends AbstractAddress {
-	protected final AbstractAddress address;
+public class AddressDecorator implements IAbstractAddress, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8812849184508076771L;
+	protected final IAbstractAddress address;
 	
-	public AddressDecorator( final AbstractAddress address){
-		this.address = address;
+	
+	
+	public AddressDecorator( final IAbstractAddress emailAddress){
+		this.address = emailAddress;
 	}
 	
-	public AbstractAddress getUndecoratedAddress(){
+	public IAbstractAddress getUndecoratedAddress(){
 		return address;
 	}
 	
@@ -26,6 +34,54 @@ public class AddressDecorator extends AbstractAddress {
 		return result.append(address.toString()).toString();
 		
 	}
+
+	public void changeTo(IAbstractAddress newData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+
+	@Override
+	public String getEmailaddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isDirty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setDirty(boolean bool) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEmailaddress(String emailaddress) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 

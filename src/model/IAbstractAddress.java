@@ -13,5 +13,9 @@ public interface IAbstractAddress {
     void setEmailaddress(String emailaddress);
 
     void setName(String name);
+
+	void changeTo(IAbstractAddress newData);
+
+	Object clone() throws CloneNotSupportedException;
     
 }

@@ -1,25 +1,29 @@
 package model;
 
-import model.hibernatespring.AbstractAddress;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observer;
+
+import view.AddressListView;
 
 public interface IAddressList {
 
-    boolean add(AbstractAddress e);
+    boolean add(IAbstractAddress e);
 
-    boolean contains(AbstractAddress e);
+    boolean contains(IAbstractAddress e);
 
-    void edit(AbstractAddress oldData, AbstractAddress newData);
+    void edit(IAbstractAddress oldData, IAbstractAddress newData);
 
-    List<AbstractAddress> getAddressList();
+    List<IAbstractAddress> getAddressList();
 
-    Iterator<AbstractAddress> iterator();
+    Iterator<IAbstractAddress> iterator();
 
     void readAll();
 
-    boolean remove(AbstractAddress e);
+    boolean remove(IAbstractAddress e);
 
-    void saveAll();
+    void saveAll();	
+
+	void addObserver(Observer o);
     
 }

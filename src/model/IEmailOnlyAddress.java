@@ -1,5 +1,5 @@
 package model;
 
-public interface IEmailOnlyAddress {
+public interface IEmailOnlyAddress extends IAbstractAddress {
     
 }

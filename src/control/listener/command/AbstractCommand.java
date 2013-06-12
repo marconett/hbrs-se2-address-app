@@ -1,11 +1,11 @@
 package control.listener.command;
 
-import model.hibernatespring.AbstractAddress;
+import model.IAbstractAddress;
 
 public abstract class AbstractCommand {
-	protected final AbstractAddress address;
+	protected final IAbstractAddress address;
 	
-	public AbstractCommand(AbstractAddress adr){
+	public AbstractCommand(IAbstractAddress adr){
 		address = adr;
 	}
 	

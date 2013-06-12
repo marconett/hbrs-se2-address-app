@@ -1,6 +1,6 @@
 package control.strategy;
 
-import model.hibernatespring.AbstractAddress;
+import model.IAbstractAddress;
 
 public class LowBudgetStrategy implements MessageSendStrategy {
 
@@ -11,7 +11,7 @@ public class LowBudgetStrategy implements MessageSendStrategy {
 	}
 
 	@Override
-	public void sendMessageTo(String msg, AbstractAddress address) {
+	public void sendMessageTo(String msg, IAbstractAddress address) {
 		System.out.println("MESSAGE_SENDER: sending Email: " + msg + " TO: " + address);		
 	}
 

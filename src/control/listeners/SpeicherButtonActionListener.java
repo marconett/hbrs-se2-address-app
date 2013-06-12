@@ -8,16 +8,17 @@ import javax.swing.JFrame;
 import control.listener.command.AddCommand;
 import control.listener.command.CommandInvoker;
 import control.listener.command.EditCommand;
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.BeansFactory;
+import model.IAbstractAddress;
+import model.IAddressList;
 import view.AbstractAddressView;
-import view.AddressListView;
+
 
 
 public class SpeicherButtonActionListener implements ActionListener {
 		
 	private AbstractAddressView av;
-	private AbstractAddress address;
+	private IAbstractAddress address;
 	
 	
 	public SpeicherButtonActionListener(AbstractAddressView av){
@@ -28,12 +29,12 @@ public class SpeicherButtonActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("ACTION: clicked to save or edit Address...");
-		AddressList al = AddressList.getInstance();
+		IAddressList al = BeansFactory.getIAddressList();
 				
 		if (al.contains(address)){
-			AbstractAddress previousData;
+			IAbstractAddress previousData;
 			try{
-				previousData = (AbstractAddress)address.clone();
+				previousData = (IAbstractAddress)address.clone();
 			}
 			catch (CloneNotSupportedException e1){
 				throw new IllegalStateException("Can't clone address");

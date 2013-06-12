@@ -35,8 +35,8 @@ import control.strategy.HighBudgetStrategy;
 import control.strategy.LowBudgetStrategy;
 import control.strategy.MessageSender;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.IAbstractAddress;
+import model.IAddressList;
 
 import model.BeansFactory;
 
@@ -48,14 +48,14 @@ public class AddressListView extends JFrame implements Observer {
 	
 	
 	// member fields, the AddressList to display and a ListModel        
-        private AddressList addressList = (AddressList) BeansFactory.getIAddressList();
+        private IAddressList addressList = (IAddressList) BeansFactory.getIAddressList();
         
 	private DefaultListModel listModel;
 
 	// create a AddressListView
 	public AddressListView() {
 		System.out.println("ALV: constructing....");
-		AddressList.getInstance().addObserver(this);
+		BeansFactory.getIAddressList().addObserver(this);
 		
 		init();
 		populateFields();
@@ -256,7 +256,7 @@ public class AddressListView extends JFrame implements Observer {
 
 		System.out.println("ALV: refreshing view...");
 		listModel.removeAllElements();
-		for (AbstractAddress address : addressList) {
+		for (IAbstractAddress address : addressList.getAddressList()) {
 			listModel.addElement(new AddressDecorator(address));
 		}
 	}

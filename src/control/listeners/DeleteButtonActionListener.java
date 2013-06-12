@@ -8,8 +8,8 @@ import javax.swing.JList;
 import control.listener.command.CommandInvoker;
 import control.listener.command.RemoveCommand;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.IAbstractAddress;
+
 
 public class DeleteButtonActionListener implements ActionListener {
 	
@@ -24,10 +24,10 @@ public class DeleteButtonActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 		Object selectedAddress = adr_list.getSelectedValue();
 		
-		System.out.println("ACTION: clicked to remove address: " + (AbstractAddress)selectedAddress);
+		System.out.println("ACTION: clicked to remove address: " + (IAbstractAddress)selectedAddress);
 		
-		if( ( selectedAddress != null) && (selectedAddress instanceof AbstractAddress)){
-			CommandInvoker.getInstance().invoke( new RemoveCommand( (AbstractAddress)selectedAddress));
+		if( ( selectedAddress != null) && (selectedAddress instanceof IAbstractAddress)){
+			CommandInvoker.getInstance().invoke( new RemoveCommand( (IAbstractAddress)selectedAddress));
 		}
 			
 	}

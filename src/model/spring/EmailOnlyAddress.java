@@ -1,5 +1,6 @@
 package model.spring;
 
+import model.IAbstractAddress;
 import model.IEmailOnlyAddress;
 
 public class EmailOnlyAddress extends AbstractAddress implements IEmailOnlyAddress {
@@ -12,6 +13,12 @@ public class EmailOnlyAddress extends AbstractAddress implements IEmailOnlyAddre
 	public EmailOnlyAddress(){
 		super();
 		System.out.println("EOA: constructing...");		
+	}
+
+	@Override
+	public void changeTo(IAbstractAddress newData) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

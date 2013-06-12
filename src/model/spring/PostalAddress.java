@@ -1,5 +1,6 @@
 package model.spring;
 
+import model.IAbstractAddress;
 import model.IPostalAddress;
 
 public class PostalAddress extends AbstractAddress implements IPostalAddress {
@@ -99,6 +100,13 @@ public class PostalAddress extends AbstractAddress implements IPostalAddress {
 		this.hausnummer = p.getHausnummer();
 		this.plz = p.getPlz();
 		this.ort = p.getOrt();
+		
+	}
+
+
+	@Override
+	public void changeTo(IAbstractAddress newData) {
+		// TODO Auto-generated method stub
 		
 	}
 	

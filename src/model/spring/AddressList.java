@@ -12,14 +12,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import model.IAbstractAddress;
 import model.IAddressList;
 
 // AddressList extends Observable, has a list of addresses
-public class AddressList extends Observable implements Serializable, Iterable<AbstractAddress>, IAddressList {
+public class AddressList extends Observable implements Serializable, Iterable<IAbstractAddress>, IAddressList {
 	private static final long serialVersionUID = -8436170099085318899L;
 	
-	private static List<AbstractAddress> m_addressList = new LinkedList<AbstractAddress>();
-	private static AddressList singelton;
+	private static List<IAbstractAddress> m_addressList = new LinkedList<IAbstractAddress>();
+	private static IAddressList singelton;
 	
 	
 	
@@ -27,7 +29,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 		System.out.println("AL: constructing...");
 	}
 	
-	public static AddressList getInstance(){
+	public IAddressList getInstance(){
 		if ( singelton == null){
 			synchronized (AddressList.class) {
 				if(singelton == null){
@@ -39,7 +41,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 
 	@Override
-	public Iterator<AbstractAddress> iterator() {
+	public Iterator<IAbstractAddress> iterator() {
 		return m_addressList.iterator();
 	}
 
@@ -59,7 +61,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 	
     @Override
-	public boolean add(AbstractAddress e){
+	public boolean add(IAbstractAddress e){
 		System.out.println("AL: adding address " + e);
 		e.setDirty(true);
 		boolean result = m_addressList.add(e);
@@ -68,7 +70,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 	
     @Override
-	public boolean remove(AbstractAddress e){
+	public boolean remove(IAbstractAddress e){
 		System.out.println("AL: removing address " + e);
 		boolean result = m_addressList.remove(e);
 		notifyObservers();
@@ -76,7 +78,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 	
     @Override
-	public boolean contains(AbstractAddress e){
+	public boolean contains(IAbstractAddress e){
 		System.out.print("AL: checking if address already present....");
 		boolean result = m_addressList.contains(e);
 		System.out.println(result);
@@ -85,12 +87,12 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 	}
 
     @Override
-	public List<AbstractAddress> getAddressList() {
+	public List<IAbstractAddress> getAddressList() {
 		return m_addressList;
 	}
 
     @Override
-	public void edit(AbstractAddress oldData, AbstractAddress newData ) {
+	public void edit(IAbstractAddress oldData, IAbstractAddress newData ) {
 		// TODO Auto-generated method stub
 		// changing the fields from old to new
 		oldData.setDirty(true);
@@ -128,7 +130,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
             return;
         }
 
-        for( AbstractAddress address : addressList ) {
+        for( IAbstractAddress address : addressList ) {
         	System.out.println("DEBUG: reading in address: " + address);
             m_addressList.add( address );
             address.setDirty(false);
@@ -159,7 +161,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 			return;
 		}
 		
-		for(AbstractAddress address: this ){
+		for(IAbstractAddress address: this ){
 			address.setDirty(false);
 		}
 		
@@ -176,7 +178,7 @@ public class AddressList extends Observable implements Serializable, Iterable<Ab
 		
 		StringBuffer result = new StringBuffer();
 		
-		for(AbstractAddress address: this){
+		for(IAbstractAddress address: this){
 			result.append(address.toString() + "\n");
 		}
 	

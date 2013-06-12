@@ -6,7 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.hibernatespring.AbstractAddress;
+import model.IEmailOnlyAddress;
+import model.IAbstractAddress;
+import model.IPostalAddress;
 
 import control.listeners.SpeicherButtonActionListener;
 
@@ -22,16 +24,16 @@ public abstract class AbstractAddressView extends JFrame {
 	
 
 	protected AddressListView addressListView;
-	protected AbstractAddress address;
+	protected IAbstractAddress address;
 	protected JPanel upperPanel;
 	protected JButton speicherButton;
 
 	// the Gui-Fields
 
 
-	public AbstractAddressView(AddressListView alv, AbstractAddress aa){
+	public AbstractAddressView(AddressListView alv, IAbstractAddress address2){
 		this.addressListView = alv;
-		this.address = aa;
+		this.address = address2;
 
 		initabstract();		
 
@@ -66,7 +68,7 @@ public abstract class AbstractAddressView extends JFrame {
 		this.pack();
 	}
 	
-	public AbstractAddress getAddress(){
+	public IAbstractAddress getAddress(){
 		return address;
 	}
 

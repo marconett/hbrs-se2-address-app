@@ -1,7 +1,8 @@
 package control.strategy;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.BeansFactory;
+import model.IAbstractAddress;
+import model.IAddressList;
 
 public class MessageSender {
 	
@@ -17,7 +18,7 @@ public class MessageSender {
 	
 	public static void sendMessageToAll(String msg){
 		System.out.println("ACTION: starting to send messages ENABLED_OPTION: " + strategy.strategyName());
-		for( AbstractAddress address: AddressList.getInstance()){
+		for( IAbstractAddress address: BeansFactory.getIAddressList().getAddressList()){
 			strategy.sendMessageTo(msg, address);
 		}
 	}

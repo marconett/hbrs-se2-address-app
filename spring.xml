@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
     <bean id="AddressList" class="model.hibernatespring.AddressList" factory-method="getInstance" />
-	<bean id="AbstractAddress" abstract="true" class="model.hibernatespring.AbstractAddress" />
-    <bean id="EmailOnlyAddress" class="model.hibernatespring.EmailOnlyAddress" />
-    <bean id="PostalAddress" class="model.hibernatespring.PostalAddress" />
+	<bean id="AbstractAddress" abstract="true" class="model.hibernatespring.AbstractAddress" scope="prototype" />
+    <bean id="EmailOnlyAddress" class="model.hibernatespring.EmailOnlyAddress" scope="prototype" />
+    <bean id="PostalAddress" class="model.hibernatespring.PostalAddress" scope="prototype"/>
+
 </beans>

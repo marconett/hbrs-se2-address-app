@@ -1,7 +1,7 @@
 package control.strategy;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.PostalAddress;
+import model.IAbstractAddress;
+import model.IPostalAddress;
 
 public class HighBudgetStrategy implements MessageSendStrategy {
 	
@@ -14,9 +14,9 @@ public class HighBudgetStrategy implements MessageSendStrategy {
 	}
 
 	@Override
-	public void sendMessageTo(String msg, AbstractAddress address) {
+	public void sendMessageTo(String msg, IAbstractAddress address) {
 		// TODO Auto-generated method stub
-		if ( address instanceof PostalAddress)
+		if ( address instanceof IPostalAddress)
 			System.out.println("MESSAGE_SENDER: sending Postal Mail: " + msg + " TO: " + address);
 		else
 			FALLBACK.sendMessageTo(msg, address);			

@@ -8,7 +8,7 @@ import view.AddressListView;
 import view.EmailOnlyAddressView;
 
 
-import model.hibernatespring.EmailOnlyAddress;
+import model.IEmailOnlyAddress;
 
 public class AddEmailButtonActionListener implements ActionListener {
 
@@ -25,7 +25,7 @@ public class AddEmailButtonActionListener implements ActionListener {
 	// link the addressView to the addressListView
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("ACTION: clicked to add new EmailOnlyAddress...");
-                EmailOnlyAddress address = (EmailOnlyAddress) BeansFactory.getIEmailOnlyAddress();
+        IEmailOnlyAddress address = (IEmailOnlyAddress) BeansFactory.getIEmailOnlyAddress();
 		new EmailOnlyAddressView(alv, address);
 	}
 

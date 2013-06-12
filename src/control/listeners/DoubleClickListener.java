@@ -5,9 +5,9 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.JList;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.EmailOnlyAddress;
-import model.hibernatespring.PostalAddress;
+import model.IAbstractAddress;
+import model.IEmailOnlyAddress;
+import model.IPostalAddress;
 import view.AbstractAddressView;
 import view.AddressListView;
 import view.EmailOnlyAddressView;
@@ -34,11 +34,11 @@ public class DoubleClickListener extends MouseAdapter {
 	             AddressDecorator decorator = (AddressDecorator) ((JList) e.getSource()).getSelectedValue();
 	             
 	             // Ihr Code
-	             if ( decorator.getUndecoratedAddress() instanceof EmailOnlyAddress)
-	            	 new EmailOnlyAddressView(alv, (EmailOnlyAddress)decorator.getUndecoratedAddress());
+	             if ( decorator.getUndecoratedAddress() instanceof IEmailOnlyAddress)
+	            	 new EmailOnlyAddressView(alv, (IEmailOnlyAddress)decorator.getUndecoratedAddress());
 	             
-	             else if ( decorator.getUndecoratedAddress() instanceof PostalAddress)
-	            	 new PostalAddressView(alv, (PostalAddress)decorator.getUndecoratedAddress());
+	             else if ( decorator.getUndecoratedAddress() instanceof IPostalAddress)
+	            	 new PostalAddressView(alv, (IPostalAddress)decorator.getUndecoratedAddress());
 	             else
 	            	 System.out.println("No such AddressType");
 	       }

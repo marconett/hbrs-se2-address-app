@@ -1,19 +1,20 @@
 package control.listener.command;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.BeansFactory;
+import model.IAbstractAddress;
+import model.IAddressList;
 
 public class EditCommand extends AbstractCommand {
 	
-	private final AbstractAddress previousData;
-	private final AbstractAddress changedData;
+	private final IAbstractAddress previousData;
+	private final IAbstractAddress changedData;
 	
-	public EditCommand( final AbstractAddress previousData, final AbstractAddress address){
+	public EditCommand( final IAbstractAddress previousData, final IAbstractAddress address){
 		super(address);
 		this.previousData = previousData;
 		
 		try{
-			changedData = (AbstractAddress)address.clone();
+			changedData = (IAbstractAddress)address.clone();
 		}
 		catch (CloneNotSupportedException e1){
 			throw new IllegalStateException("Can't clone address");
@@ -24,7 +25,7 @@ public class EditCommand extends AbstractCommand {
 	public void undo() {
 		
 		System.out.println("EDIT_COMMAND: undoing...");
-		AddressList addressList = AddressList.getInstance();
+		IAddressList addressList = BeansFactory.getIAddressList();
 		
 		if ( addressList.contains(address)){
 			addressList.edit(address, previousData);
@@ -37,7 +38,7 @@ public class EditCommand extends AbstractCommand {
 	@Override
 	public void execute() {
 		System.out.println("EDIT_COMMAND: executing...");
-		AddressList addressList = AddressList.getInstance();
+		IAddressList addressList = BeansFactory.getIAddressList();
 		
 		if ( addressList.contains(address)){
 			addressList.edit(address, changedData);

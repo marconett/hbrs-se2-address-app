@@ -1,24 +1,24 @@
 package control.listener.command;
 
-import model.hibernatespring.AbstractAddress;
-import model.hibernatespring.AddressList;
+import model.BeansFactory;
+import model.IAbstractAddress;
 
 public class RemoveCommand extends AbstractCommand {
 	
-	public RemoveCommand(final AbstractAddress adr){
+	public RemoveCommand(IAbstractAddress adr){
 		super(adr);
 	}
 
 	@Override
 	public void undo() {
 		System.out.println("REMOVE_COMMAND: undoing...");
-		AddressList.getInstance().add(address);
+		BeansFactory.getIAddressList().add(address);
 	}
 
 	@Override
 	public void execute() {
 		System.out.println("REMOVE_COMMAND: executing...");
-		AddressList.getInstance().remove(address);
+		BeansFactory.getIAddressList().remove(address);
 	}
 
 }

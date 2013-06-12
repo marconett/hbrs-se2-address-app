@@ -4,13 +4,15 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import model.hibernatespring.EmailOnlyAddress;
+
+import model.IEmailOnlyAddress;
+import model.IEmailOnlyAddress;
 
 @SuppressWarnings("serial")
 public class EmailOnlyAddressView extends AbstractAddressView {
 	
 	// the address to display and the AddressListView in which to display
-	private  EmailOnlyAddress address;
+	private  IEmailOnlyAddress address;
 	
 	// the GUI-Fields
 	private JTextField nameTextField;
@@ -18,10 +20,10 @@ public class EmailOnlyAddressView extends AbstractAddressView {
 
 	//creating an AddressView, filling its fields and setting its visibility and close 
 	// operation
-	public EmailOnlyAddressView(AddressListView addressListView, EmailOnlyAddress address) {
-		super(addressListView, address);
+	public EmailOnlyAddressView(AddressListView addressListView, IEmailOnlyAddress address2) {
+		super(addressListView, address2);
 		System.out.println("EOAV: constructing...");
-		this.address = address;
+		this.address = address2;
 		
 		populateFields();
 		

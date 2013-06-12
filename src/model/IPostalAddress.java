@@ -1,6 +1,6 @@
 package model;
 
-public interface IPostalAddress {
+public interface IPostalAddress extends IAbstractAddress {
 
     String getHausnummer();
 
