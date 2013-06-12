@@ -3,7 +3,7 @@ package control.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BeansFactory;
-import model.spring.PostalAddress;
+import model.hibernatespring.PostalAddress;
 import view.AddressListView;
 import view.PostalAddressView;
 

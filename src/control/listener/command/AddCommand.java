@@ -1,7 +1,7 @@
 package control.listener.command;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.hibernatespring.AbstractAddress;
+import model.hibernatespring.AddressList;
 
 public class AddCommand extends AbstractCommand {
 	

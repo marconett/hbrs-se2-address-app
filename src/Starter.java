@@ -1,4 +1,4 @@
-import model.spring.AddressList;
+import model.hibernatespring.AddressList;
 import view.AddressListView;
 
 public class Starter {	

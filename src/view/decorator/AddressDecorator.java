@@ -1,6 +1,6 @@
 package view.decorator;
 
-import model.spring.AbstractAddress;
+import model.hibernatespring.AbstractAddress;
 
 public class AddressDecorator extends AbstractAddress {
 	protected final AbstractAddress address;

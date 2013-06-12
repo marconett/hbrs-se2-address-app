@@ -1,7 +1,7 @@
 package control.strategy;
 
-import model.spring.AbstractAddress;
-import model.spring.PostalAddress;
+import model.hibernatespring.AbstractAddress;
+import model.hibernatespring.PostalAddress;
 
 public class HighBudgetStrategy implements MessageSendStrategy {
 	

@@ -35,8 +35,8 @@ import control.strategy.HighBudgetStrategy;
 import control.strategy.LowBudgetStrategy;
 import control.strategy.MessageSender;
 
-import model.spring.AbstractAddress;
-import model.spring.AddressList;
+import model.hibernatespring.AbstractAddress;
+import model.hibernatespring.AddressList;
 
 import model.BeansFactory;
 

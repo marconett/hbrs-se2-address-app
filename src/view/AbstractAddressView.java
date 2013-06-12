@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.spring.AbstractAddress;
+import model.hibernatespring.AbstractAddress;
 
 import control.listeners.SpeicherButtonActionListener;
 

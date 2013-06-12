@@ -1,6 +1,6 @@
 package model;
 
-import model.spring.AbstractAddress;
+import model.hibernatespring.AbstractAddress;
 import java.util.Iterator;
 import java.util.List;
 

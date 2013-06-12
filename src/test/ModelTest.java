@@ -2,9 +2,9 @@ package test;
 
 import view.AddressListView;
 import view.decorator.AddressDecorator;
-import model.spring.AddressList;
-import model.spring.EmailOnlyAddress;
-import model.spring.PostalAddress;
+import model.hibernatespring.AddressList;
+import model.hibernatespring.EmailOnlyAddress;
+import model.hibernatespring.PostalAddress;
 import junit.framework.TestCase;
 import model.BeansFactory;
 
